@@ -2,7 +2,7 @@
 
   angular
     .module('AnrModule')
-    .factory('VerticalBarChartService', ['gettextCatalog', function (gettextCatalog){
+    .factory('VerticalBarChartService', ['gettextCatalog', 'AnrThemeConfig', function (gettextCatalog, AnrThemeConfig){
 
       /**
        * Generate a grouped/stacked Vertical Bar Chart
@@ -96,9 +96,9 @@
           .attr("class", "tooltip" + tag.substring(1))
           .style("opacity", 0)
           .style("position", "absolute")
-          .style("background-color", "white")
-          .style("color", "rgba(0,0,0,0.87)")
-          .style("border", "solid black")
+          .style("background-color", AnrThemeConfig.charts.tooltip.background)
+          .style("color", AnrThemeConfig.charts.tooltip.text)
+          .style("border", "solid " + AnrThemeConfig.charts.tooltip.border)
           .style("border-width", "1px")
           .style("border-radius", "5px")
           .style("padding", "5px")
@@ -299,7 +299,7 @@
           svg.append("path")
             .attr("class", "averageLine")
             .attr("fill", "none")
-            .attr("stroke", "black")
+            .attr("stroke", AnrThemeConfig.charts.borderPrimary)
             .attr("stroke-opacity", 0.7)
             .attr("stroke-width", 1);
 
@@ -391,7 +391,7 @@
                 if (filtered.indexOf(d.category.replace(/\s/g, '')) == -1) {
                   return setColor(d);
                 } else {
-                  return "white";
+                  return AnrThemeConfig.charts.surfacePrimary;
                 }
               } else {
                 return setColor(d);
@@ -407,7 +407,7 @@
           ticks.selectAll("line")
             .attr("opacity", 0.7)
             .attr("transform", `translate(1,0)`)
-            .attr("stroke", "lightgrey");
+            .attr("stroke", AnrThemeConfig.charts.gridStrokeLight);
         }
 
         function updateChart(newCategories) {

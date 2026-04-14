@@ -2,7 +2,7 @@
 
   angular
     .module('AnrModule')
-    .factory('RadarChartService', ['gettextCatalog', function (gettextCatalog){
+    .factory('RadarChartService', ['gettextCatalog', 'AnrThemeConfig', function (gettextCatalog, AnrThemeConfig){
 
       /*
       * Generate a grouped/stacked Vertical Bar Chart
@@ -62,7 +62,7 @@
             .text("🡸 "+ gettextCatalog.getString("Go back"))
             .attr("transform", `translate(${20 - margin.left},${40 - margin.top})`)
             .style("font-weight", "bold")
-            .style("fill", "#006FBA")
+            .style("fill", AnrThemeConfig.charts.brandPrimary)
             .style("cursor", "pointer")
             .on("click", function(){
                 options.deepData = false;
@@ -110,7 +110,7 @@
              .attr("x2", (d, i) => levelFactor * (1 - Math.sin((i+1)*sections)))
              .attr("y2", (d, i) => levelFactor * (1 - Math.cos((i+1)*sections)))
              .attr("class", "line")
-             .style("stroke", "grey")
+             .style("stroke", AnrThemeConfig.charts.gridStroke)
              .style("stroke-opacity", "0.75")
              .style("stroke-width", "0.3px")
              .attr("transform", `translate(${(radius-levelFactor)},${(radius-levelFactor)})`);
@@ -125,7 +125,7 @@
              .style("font-family", "sans-serif")
              .style("font-size", "10px")
              .attr("transform", `translate(${(radius-levelFactor) + 5 },${(radius-levelFactor)})`)
-             .attr("fill", "#737373")
+             .attr("fill", AnrThemeConfig.charts.textSecondary)
              .text(Format((j+1) * maxValue / levels));
         }
 
@@ -141,7 +141,7 @@
              .attr("x2", (d, i) => radius * (1 - Math.sin(i*sections)))
              .attr("y2", (d, i) => radius * (1 - Math.cos(i*sections)))
              .attr("class", "line")
-             .style("stroke", "grey")
+             .style("stroke", AnrThemeConfig.charts.gridStroke)
              .style("stroke-width", "1px");
 
         axis.append("text")
@@ -160,13 +160,13 @@
                 d3.select(this)
                   .style("cursor", "pointer")
                   .style("font-weight", "bold")
-                  .style("fill", "#006FBA");
+                  .style("fill", AnrThemeConfig.charts.brandPrimary);
             })
             .on('mouseout', function() {
               d3.select(this)
               .style("cursor", "text")
               .style("font-weight", "normal")
-              .style("fill", "rgba(0,0,0,0.87)");
+              .style("fill", AnrThemeConfig.charts.textPrimary);
 
             })
             .on("click", function(d){
@@ -289,7 +289,7 @@
                 .attr("x", width - 52)
                 .attr("y", (d,i) => i * 20 + 9)
                 .attr("font-size", "11px")
-                .attr("fill", "#737373")
+                .attr("fill", AnrThemeConfig.charts.textSecondary)
                 .text(d => d);
 
         function getNewSeries(d,i){
@@ -326,10 +326,10 @@
                   .attr("fill",function(d) {
                     if (filtered.length) {
                       if (filtered.indexOf(d.replace(/\s/g, '')) == -1) {
-                        return color(this.getAttribute('index'));
+                       return color(this.getAttribute('index'));
                       }
                        else {
-                        return "white";
+                        return AnrThemeConfig.charts.surfacePrimary;
                       }
                     }
                     else {

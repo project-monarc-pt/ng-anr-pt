@@ -1,5 +1,5 @@
 body{
-    font-family: Helvetica, Sans-serif !important;
+    font-family: Arial, Helvetica, Sans-serif !important;
 }
 .main-card {
   min-height: calc(100vh - 112px);
@@ -1386,7 +1386,7 @@ md-select-menu md-content
     box-shadow: none !important;
 }
 .autocomplete-record-gdpr md-autocomplete-wrap input{
-    font-family: Helvetica, Sans-serif;
+    font-family: Arial, Helvetica, Sans-serif;
     font-size: 12px
 }
 

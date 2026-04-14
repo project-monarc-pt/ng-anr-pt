@@ -2,7 +2,7 @@
 
   angular
     .module('AnrModule')
-    .factory('HeatmapChartService', ['gettextCatalog', function (gettextCatalog){
+    .factory('HeatmapChartService', ['gettextCatalog', 'AnrThemeConfig', function (gettextCatalog, AnrThemeConfig){
 
       /*
       * Generate a grouped/stacked Vertical Bar Chart
@@ -119,7 +119,7 @@
           .attr("y", d => { return y(d.y) })
           .attr("width", gridSize)
           .attr("height",gridSize)
-          .attr("stroke", "white")
+          .attr("stroke", AnrThemeConfig.charts.surfacePrimary)
           .attr("stroke-opacity", 1)
           .attr("stroke-width", 1)
           .style("fill", d => {

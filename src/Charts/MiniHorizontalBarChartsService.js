@@ -2,7 +2,7 @@
 
 	angular
 		.module('AnrModule')
-		.factory('MiniHorizontalBarChartsService', ['gettextCatalog', function(gettextCatalog) {
+		.factory('MiniHorizontalBarChartsService', ['gettextCatalog', 'AnrThemeConfig', function(gettextCatalog, AnrThemeConfig) {
 
 			/**
 			 * Generate a grouped/stacked Vertical Bar Chart
@@ -223,7 +223,7 @@
 					yTicks.selectAll("line")
 						.attr("opacity", 0.7)
 						.attr("transform", `translate(1,0)`)
-						.attr("stroke", "lightgrey");
+						.attr("stroke", AnrThemeConfig.charts.gridStrokeLight);
 				}
 
 				function wrap(text, width) {

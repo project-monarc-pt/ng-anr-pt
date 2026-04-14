@@ -2,7 +2,7 @@
 
   angular
     .module('AnrModule')
-    .factory('LineChartService', ['gettextCatalog', function (gettextCatalog){
+    .factory('LineChartService', ['gettextCatalog', 'AnrThemeConfig', function (gettextCatalog, AnrThemeConfig){
 
       /**
       * Generate a Line Chart
@@ -84,9 +84,9 @@
               .attr("class", "tooltip" + tag.substring(1))
               .style("opacity", 0)
               .style("position", "absolute")
-              .style("background-color", "white")
-              .style("color","rgba(0,0,0,0.87)")
-              .style("border", "solid black")
+              .style("background-color", AnrThemeConfig.charts.tooltip.background)
+              .style("color", AnrThemeConfig.charts.tooltip.text)
+              .style("border", "solid " + AnrThemeConfig.charts.tooltip.border)
               .style("border-width", "1px")
               .style("border-radius", "5px")
               .style("padding", "5px")
@@ -161,7 +161,7 @@
 
         if (!options.externalFilter) {
           var color = d3.scaleOrdinal()
-              .range(["#FD661F","#FFBC1C","#D6F107"]);
+              .range(AnrThemeConfig.charts.riskScaleReversed);
         }else{
           var color = d3.scaleSequential(options.color)
                             .domain([0,allSeries.length]);
@@ -330,7 +330,7 @@
           )
           if (selected.style("visibility") == "visible") {
             selected.style("visibility","hidden");
-            d3.select(d).style('fill','white');
+            d3.select(d).style('fill', AnrThemeConfig.charts.surfacePrimary);
           }else{
             selected.style("visibility","visible");
             d3.select(d).style('fill', function(){

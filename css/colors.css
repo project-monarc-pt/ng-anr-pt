@@ -1,0 +1,92 @@
+:root {
+    /* Brand */
+    --anr-color-brand-primary: #006FBA;
+    --anr-color-brand-primary-light: #2196F3;
+    --anr-color-brand-primary-lighter: #90CAF9;
+    --anr-color-brand-primary-soft: #E3F2FD;
+    --anr-color-brand-primary-soft-alt: #e3f2fd;
+    --anr-color-brand-primary-dark: #0D47A1;
+    --anr-color-brand-loading-track: #ffde7d;
+    --anr-color-brand-loading-bar: #ffc107;
+
+    /* Text */
+    --anr-color-text-primary: #333333;
+    --anr-color-text-primary-alt: #333;
+    --anr-color-text-secondary: #555;
+    --anr-color-text-muted: #666666;
+    --anr-color-text-disabled: #8A8A8A;
+    --anr-color-text-disabled-soft: #b7b7b7;
+    --anr-color-text-placeholder: grey;
+    --anr-color-text-dark: black;
+    --anr-color-text-on-dark: white;
+    --anr-color-text-on-dark-alt: #fff;
+    --anr-color-text-on-dark-soft: rgba(255,255,255,0.87);
+    --anr-color-icon-muted: rgba(0,0,0,0.54);
+    --anr-color-text-default-rgba: rgba(0, 0, 0, 0.87);
+    --anr-color-text-placeholder-rgba: rgba(0,0,0,0.38);
+
+    /* Surfaces */
+    --anr-color-surface-dark: #333333;
+    --anr-color-surface-light: #F0F0F0;
+    --anr-color-surface-light-alt: #F1F1F1;
+    --anr-color-surface-soft: #EEEEEE;
+    --anr-color-surface-soft-alt: #EAEAEA;
+    --anr-color-surface-formula: #F4F4F4;
+    --anr-color-surface-button-hover: #e7e7e7;
+    --anr-color-surface-row-alt: rgba(1, 1, 1, 0.02);
+    --anr-color-surface-tree-hover: rgba(85, 85, 85, .07);
+    --anr-color-surface-overlay: rgba(0, 0, 0, 0.9);
+    --anr-color-surface-white: #FFFFFF;
+    --anr-color-surface-white-alt: #fff;
+
+    /* Borders */
+    --anr-color-border-default: #DDDDDD;
+    --anr-color-border-strong: #AAAAAA;
+    --anr-color-border-strong-alt: #AAA;
+    --anr-color-border-muted: #BBBBBB;
+    --anr-color-border-light: #ccc;
+    --anr-color-border-light-alt: #d6d6d6;
+    --anr-color-border-lightest: #ddd;
+    --anr-color-border-panel: #DEDEDE;
+    --anr-color-border-panel-hover: #BEBEBE;
+    --anr-color-border-drag: #33B5E5;
+
+    /* Status */
+    --anr-color-success: #4CAF50;
+    --anr-color-success-dark: #388E3C;
+    --anr-color-success-darker: #1B5E20;
+    --anr-color-success-soft: #A5D6A7;
+    --anr-color-success-risk: #D6F107;
+    --anr-color-success-dot: green;
+
+    --anr-color-warning: #FFBC1C;
+    --anr-color-warning-strong: #FF9800;
+    --anr-color-warning-dark: #F57C00;
+    --anr-color-warning-darker: #E65100;
+    --anr-color-warning-soft: #FFF3E0;
+    --anr-color-warning-soft-alt: #FFF59D;
+
+    --anr-color-danger: #FD661F;
+    --anr-color-danger-strong: #F44336;
+    --anr-color-danger-dark: #B71C1C;
+    --anr-color-danger-soft: #FFCDD2;
+    --anr-color-danger-soft-alt: #EF9A9A;
+    --anr-color-danger-attention: #FF5722;
+    --anr-color-danger-error: red;
+    --anr-color-danger-edit: tomato;
+
+    --anr-color-info: #03A9F4;
+    --anr-color-info-dark: #01579B;
+
+    /* Wizard / neutral */
+    --anr-color-neutral-step: #9E9E9E;
+    --anr-color-neutral-step-alt: #607D8B;
+    --anr-color-neutral-step-light: #BDBDBD;
+    --anr-color-button-true: #478bf9;
+    --anr-color-button-false: #f5f5f5;
+    --anr-color-tree-toggle-hover: #DFDFDF;
+
+    /* Shadows */
+    --anr-color-shadow-soft: rgba(0,0,0,0.25);
+    --anr-color-shadow-elevated: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
+}

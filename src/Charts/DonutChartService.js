@@ -2,7 +2,7 @@
 
   angular
     .module('AnrModule')
-    .factory('DonutChartService', ['gettextCatalog', function (gettextCatalog){
+    .factory('DonutChartService', ['gettextCatalog', 'AnrThemeConfig', function (gettextCatalog, AnrThemeConfig){
 
       /*
       * Generate a donut Chart
@@ -41,9 +41,9 @@
            .attr("class", "tooltip" + tag.substring(1))
            .style("opacity", 0)
            .style("position", "absolute")
-           .style("background-color", "white")
-           .style("color","rgba(0,0,0,0.87)")
-           .style("border", "solid black")
+           .style("background-color", AnrThemeConfig.charts.tooltip.background)
+           .style("color", AnrThemeConfig.charts.tooltip.text)
+           .style("border", "solid " + AnrThemeConfig.charts.tooltip.border)
            .style("border-width", "1px")
            .style("border-radius", "5px")
            .style("padding", "5px")
@@ -88,7 +88,7 @@
               .text("🡸 "+ gettextCatalog.getString("Go back"))
               .attr("transform", `translate(${-30},${margin.top})`)
               .style("font-weight", "bold")
-              .style("fill", "#006FBA")
+              .style("fill", AnrThemeConfig.charts.brandPrimary)
               .style("cursor", "pointer")
               .on("click", function(){
                   drawArcs(dataShown['parent'],true); //we call the parent and in the parent data its parent is present
@@ -106,7 +106,7 @@
           path.enter().append("path")
               .attr("fill", (d, i) => color(i))
               .attr("d", arc)
-              .attr("stroke", "white")
+              .attr("stroke", AnrThemeConfig.charts.surfacePrimary)
               .attr("stroke-width", "6px")
               .on("click",function(d) {
                 if(d.data.series !== undefined)

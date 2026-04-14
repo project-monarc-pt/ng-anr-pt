@@ -2,7 +2,7 @@
 
   angular
     .module('AnrModule')
-    .factory('MultiLineChartService', ['gettextCatalog', function (gettextCatalog){
+    .factory('MultiLineChartService', ['gettextCatalog', 'AnrThemeConfig', function (gettextCatalog, AnrThemeConfig){
 
       /*
       * Generate a multiLineChart
@@ -142,13 +142,13 @@
               d3.select(this)
                 .style("cursor", "pointer")
                 .style("font-weight", "bold")
-                .style("fill", "#006FBA");
+                .style("fill", AnrThemeConfig.charts.brandPrimary);
           })
           .on('mouseout', function() {
             d3.select(this)
             .style("cursor", "text")
             .style("font-weight", "normal")
-            .style("fill", "rgba(0,0,0,0.87)");
+            .style("fill", AnrThemeConfig.charts.textPrimary);
 
           })
           .call(wrap, width);

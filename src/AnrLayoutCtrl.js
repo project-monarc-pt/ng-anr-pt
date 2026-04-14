@@ -6,7 +6,7 @@
       '$scope', 'toastr', '$http', '$q', '$mdMedia', '$mdDialog', '$timeout', 'gettextCatalog', 'gettext', 'TableHelperService',
       'ModelService', 'ObjlibService', 'AnrService', '$stateParams', '$rootScope', '$location', '$state', 'ToolsAnrService',
       '$transitions', 'DownloadService', '$mdPanel', '$injector', 'ConfigService', 'ClientRecommendationService',
-      'ReferentialService', 'AmvService', 'RiskService', 'SoaScaleCommentService', 'UserService', AnrLayoutCtrl
+      'ReferentialService', 'AmvService', 'RiskService', 'SoaScaleCommentService', 'UserService', 'AnrThemeConfig', AnrLayoutCtrl
     ]);
 
   /**
@@ -15,7 +15,7 @@
   function AnrLayoutCtrl($scope, toastr, $http, $q, $mdMedia, $mdDialog, $timeout, gettextCatalog, gettext, TableHelperService, ModelService,
     ObjlibService, AnrService, $stateParams, $rootScope, $location, $state, ToolsAnrService,
     $transitions, DownloadService, $mdPanel, $injector, ConfigService, ClientRecommendationService,
-    ReferentialService, AmvService, RiskService, SoaScaleCommentService, UserService) {
+    ReferentialService, AmvService, RiskService, SoaScaleCommentService, UserService, AnrThemeConfig) {
 
 
     if ($scope.OFFICE_MODE == 'FO') {
@@ -78,6 +78,7 @@
 
     $scope.ToolsAnrService = ToolsAnrService;
     $scope.GlobalResizeMenuSize = 230;
+    $scope.anrBrandLogo = AnrThemeConfig.branding.layoutLogo;
     $scope.GlobalResizeMenuContentHide = false;
     var minWidthMenu = 80;
     var isModelLoading = false;

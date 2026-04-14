@@ -2,7 +2,7 @@
 
   angular
     .module('AnrModule')
-    .factory('MultiHorizontalBarChartService', ['gettextCatalog', '$timeout', function (gettextCatalog, $timeout){
+    .factory('MultiHorizontalBarChartService', ['gettextCatalog', '$timeout', 'AnrThemeConfig', function (gettextCatalog, $timeout, AnrThemeConfig){
 
       /**
       * Generate a grouped/stacked Horizontal Bar Chart
@@ -27,7 +27,7 @@
           margin : {top: 15, right: 120, bottom: 30, left: 40},
           width : 400,
           height : 300,
-          color : ["#D6F107","#FFBC1C","#FD661F"],
+          color : AnrThemeConfig.charts.riskScale,
           showValues : true,
           showLegend : true,
           nameValue : 'value'
@@ -72,9 +72,9 @@
            .attr("class", "tooltip" + tag.substring(1))
            .style("opacity", 0)
            .style("position", "absolute")
-           .style("background-color", "white")
-           .style("color","rgba(0,0,0,0.87)")
-           .style("border", "solid black")
+           .style("background-color", AnrThemeConfig.charts.tooltip.background)
+           .style("color", AnrThemeConfig.charts.tooltip.text)
+           .style("border", "solid " + AnrThemeConfig.charts.tooltip.border)
            .style("border-width", "1px")
            .style("border-radius", "5px")
            .style("padding", "5px")
@@ -223,7 +223,7 @@
           var yTicks = svg.selectAll(".xAxis").selectAll(".tick")
           yTicks.selectAll("line")
               .attr("opacity", 0.7)
-              .attr("stroke", "lightgrey");
+              .attr("stroke", AnrThemeConfig.charts.gridStrokeLight);
         }
 
         function sortData(data){
@@ -265,10 +265,10 @@
                 .attr("fill",function(d) {
                   if (filtered.length) {
                     if (filtered.indexOf(d.replace(/\s/g, '')) == -1) {
-                      return color(d);
+                     return color(d);
                     }
                      else {
-                      return "white";
+                      return AnrThemeConfig.charts.surfacePrimary;
                     }
                   }
                   else {
