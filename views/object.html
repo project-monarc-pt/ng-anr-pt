@@ -10,7 +10,7 @@
 
                 <div flex ng-if="object" ng-class="{'active-obj': mode == 'anr', 'forceBreakWord': !_langField(object,'name').includes(' ')}">
                     <h2 class="no-margin">
-                        <md-icon ng-if="object.scope == 2" style="color: #F57C00">language</md-icon>
+                        <md-icon ng-if="object.scope == 2" class="anr-icon-warning">language</md-icon>
                         {{ _langField(object,'name') }}
                     </h2>
 

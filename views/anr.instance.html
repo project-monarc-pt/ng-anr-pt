@@ -4,7 +4,7 @@
             <div layout="row" layout-align="start center" class="border-right mw250p">
                 <div flex ng-if="instance" class="active-inst" ng-class="{'forceBreakWord': !_langField(instance,'name').includes(' ')}">
                     <h2 class="no-margin">
-                        <md-icon ng-if="instance.object.scope == 2" style="color: #F57C00">language</md-icon>
+                        <md-icon ng-if="instance.object.scope == 2" class="anr-icon-warning">language</md-icon>
                         {{ _langField(instance,'name') }}
                     </h2>
 

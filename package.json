@@ -7,7 +7,6 @@
     "type": "git",
     "url": "https://github.com/monarc-project/ng-anr"
   },
-  "dependencies": {},
   "devDependencies": {},
   "author": "Luxembourg House of Cybersecurity https://lhc.lu",
   "license": "AGPL-3.0",
