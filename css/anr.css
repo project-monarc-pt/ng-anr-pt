@@ -1,7 +1,11 @@
 @import url("colors.css");
 
-body{
-    font-family: Helvetica, Sans-serif !important;
+body,
+button,
+input,
+select,
+textarea { /*Angular Material sets the font directly on input/select/textarea */
+    font-family: Arial, "Open Sans", sans-serif !important;
 }
 .main-card {
   min-height: calc(100vh - 112px);
@@ -647,7 +651,8 @@ md-input-container .hint.ng-leave, md-input-container .hint.ng-enter.ng-enter-ac
 
 .btn .bouton-true {
 	padding:6px 0 6px 0;
-	font:bold 13px Arial;
+	font-size: 13px;
+    font-weight: bold;
 	background: var(--anr-color-button-true);
 	color: var(--anr-color-text-on-dark-alt);
 	border-radius:2px;
@@ -656,7 +661,8 @@ md-input-container .hint.ng-leave, md-input-container .hint.ng-enter.ng-enter-ac
 }
 .btn .bouton-false {
 	padding:6px 0 6px 0;
-	font:bold 13px Arial;
+	font-size: 13px;
+    font-weight: bold;
 	background: var(--anr-color-button-false);
 	color: var(--anr-color-text-secondary);
 	border-radius:2px;
@@ -1436,7 +1442,6 @@ md-select-menu md-content
     box-shadow: none !important;
 }
 .autocomplete-record-gdpr md-autocomplete-wrap input{
-    font-family: Helvetica, Sans-serif;
     font-size: 12px
 }
 

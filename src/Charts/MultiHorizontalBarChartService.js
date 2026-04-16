@@ -575,7 +575,7 @@
         function getWidth(text) {
           var canvas = document.createElement('canvas'),
           context = canvas.getContext('2d');
-          context.font = '10px Helvetica';
+          context.font = `10px ${AnrThemeConfig.typography.fontFamily}`;
           return context.measureText(text).width;
         }
 

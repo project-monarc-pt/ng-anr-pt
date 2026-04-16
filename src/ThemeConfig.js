@@ -40,6 +40,11 @@
         branding: {
           logo: 'img/logo-monarc.png',
           layoutLogo: 'img/monarc.png'
+        },
+
+        // Shared typography settings for JS consumers (charts, canvas, exports).
+        typography: {
+          fontFamily: 'Arial, "Open Sans", sans-serif'
         }
       };
     }]);

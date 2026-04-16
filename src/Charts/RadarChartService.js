@@ -15,6 +15,7 @@
       */
 
       function draw(tag, data, parameters){
+        var chartFontFamily = AnrThemeConfig.typography.fontFamily;
         var options = {
            margin : {top: 100, right: 200, bottom: 100, left: 200},
            width: 500,
@@ -122,7 +123,7 @@
              .attr("x", levelFactor * (1 - Math.sin(0)))
              .attr("y", levelFactor * (1 - Math.cos(0)))
              .attr("class", "legend")
-             .style("font-family", "sans-serif")
+             .style("font-family", chartFontFamily)
              .style("font-size", "10px")
              .attr("transform", `translate(${(radius-levelFactor) + 5 },${(radius-levelFactor)})`)
              .attr("fill", AnrThemeConfig.charts.textSecondary)
@@ -147,7 +148,7 @@
         axis.append("text")
             .attr("class", "legend")
             .text((d) => d.label)
-            .style("font-family", "sans-serif")
+            .style("font-family", chartFontFamily)
             .style("font-size", "11px")
             .attr("text-anchor", "middle")
             .attr("dy", "1.5em")
@@ -259,7 +260,7 @@
         //Tooltip
           tooltip = svg.append('text')
                  .attr('opacity', 0)
-                 .attr('font-family', 'sans-serif')
+                 .attr('font-family', chartFontFamily)
                  .attr('font-size', '13px');
 
         //legend
