@@ -27,7 +27,7 @@
           margin : {top: 15, right: 120, bottom: 30, left: 40},
           width : 400,
           height : 300,
-          color : AnrThemeConfig.charts.riskScale,
+          color : AnrThemeConfig.charts.categoryScale,
           showValues : true,
           showLegend : true,
           nameValue : 'value'

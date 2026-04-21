@@ -33,7 +33,7 @@
           width: 400,
           height: 300,
           sort: false,
-          color: d3.schemeCategory10,
+          color: AnrThemeConfig.charts.categoryScale,
           colorGradient: false,
           showValues: true,
           showLegend: true,

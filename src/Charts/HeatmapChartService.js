@@ -21,7 +21,7 @@
         var options = {
           margin : {top: 50, right: 50, bottom: 30, left: 40},
           width : 500,
-          color : d3.schemeCategory10,
+          color : AnrThemeConfig.charts.riskScale,
         } //default options for the graph
 
         options=$.extend(options,parameters); //merge the parameters to the default options

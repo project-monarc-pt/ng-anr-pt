@@ -29,7 +29,7 @@
           margin : {top: 30, right: 50, bottom: 30, left: 40},
           width : 400,
           height : 300,
-          color : d3.interpolateTurbo,
+          color : d3.interpolateRgbBasis(AnrThemeConfig.charts.categoryScale),
           legendSize : 250,
           isZoomable : true,
           zoomYAxis: false,
@@ -161,7 +161,7 @@
 
         if (!options.externalFilter) {
           var color = d3.scaleOrdinal()
-              .range(AnrThemeConfig.charts.riskScaleReversed);
+              .range(AnrThemeConfig.charts.categoryScale);
         }else{
           var color = d3.scaleSequential(options.color)
                             .domain([0,allSeries.length]);

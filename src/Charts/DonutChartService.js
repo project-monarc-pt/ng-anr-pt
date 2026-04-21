@@ -94,7 +94,7 @@
                   drawArcs(dataShown['parent'],true); //we call the parent and in the parent data its parent is present
                 });
             }
-          color =  d3.scaleSequential(d3.interpolateTurbo)
+          color =  d3.scaleSequential(d3.interpolateRgbBasis(AnrThemeConfig.charts.categoryScale))
                       .domain([0,dataToDisplay.length]);
 
           if (options.color) {

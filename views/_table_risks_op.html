@@ -8,7 +8,7 @@
 
     <md-card ng-if="(instmode == 'anr' || instmode == 'inst') && !opsheet_risk && OFFICE_MODE == 'FO'">
         <div layout="row" layout-align="center center" layout-wrap>
-            <form layout="row" layout-align="center center" class="md-padding-left md-padding-right" layout-wrap ng-submit="updateInstanceRisksOp ? updateInstanceRisksOp() : updateAnrRisksOpTable()">
+            <form layout="row" layout-align="end center" class="md-padding-left md-padding-right anr-risks-filters-form" layout-wrap ng-submit="updateInstanceRisksOp ? updateInstanceRisksOp() : updateAnrRisksOpTable()">
                 <input type="submit" style="position: absolute; left: -99999px">
 
                 {{ 'Risk threshold (on max NET risk)' | translate }}&nbsp;

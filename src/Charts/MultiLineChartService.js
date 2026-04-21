@@ -20,7 +20,7 @@
           margin : {top: 30, right: 50, bottom: 30, left: 40},
           width : 400,
           height : 300,
-          color : d3.interpolateTurbo,
+          color : d3.interpolateRgbBasis(AnrThemeConfig.charts.categoryScale),
           nameValue : 'value'
         } //default options for the graph
 

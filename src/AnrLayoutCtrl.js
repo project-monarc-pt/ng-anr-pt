@@ -78,7 +78,7 @@
 
     $scope.ToolsAnrService = ToolsAnrService;
     $scope.GlobalResizeMenuSize = 230;
-    $scope.anrBrandLogo = AnrThemeConfig.branding.layoutLogo;
+    $scope.anrBrandLogo = AnrThemeConfig.branding.progressFinishIcon;
     $scope.GlobalResizeMenuContentHide = false;
     var minWidthMenu = 80;
     var isModelLoading = false;
@@ -1301,6 +1301,20 @@
       }
 
       return complete;
+    };
+
+    $scope.isMethodWorkflowComplete = function() {
+      if (!$scope.methodProgress || !$scope.model || !$scope.model.anr) {
+        return false;
+      }
+
+      for (var i = 0; i < $scope.methodProgress.length; ++i) {
+        if (!$scope.isMethodStepComplete($scope.methodProgress[i])) {
+          return false;
+        }
+      }
+
+      return true;
     };
 
     // Tree

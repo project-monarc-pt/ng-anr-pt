@@ -29,9 +29,9 @@
                   </md-button>
                 </md-card>
 
-                <md-subheader ng-if="!asset.uuid && OFFICE_MODE == 'FO'" layout="row" layout-align="center"><strong>{{ 'Manual creation' | translate }}</strong></md-subheader><br />
+                <md-subheader class="kb-dialog-manual-creation-subheader" ng-if="!asset.uuid && OFFICE_MODE == 'FO'" layout="row" layout-align="center"><strong>{{ 'Manual creation' | translate }}</strong></md-subheader><br />
 
-                <md-subheader>{{ 'Labels and descriptions' | translate }}</md-subheader>
+                <md-subheader class="kb-dialog-section-subheader">{{ 'Labels and descriptions' | translate }}</md-subheader>
 
                 <md-input-container class="md-block" ng-hide="OFFICE_MODE == 'FO'" flex>
                     <label translate>Language</label>
@@ -59,7 +59,7 @@
                     <textarea ng-model="asset['description' + language]" rows="4"></textarea>
                 </md-input-container>
 
-                <md-subheader>{{ 'General information' | translate }}</md-subheader>
+                <md-subheader class="kb-dialog-section-subheader">{{ 'General information' | translate }}</md-subheader>
 
                 <md-input-container class="md-block" layout="row" ng-if="OFFICE_MODE == 'BO'" flex>
                     <label translate>Mode</label>
@@ -89,7 +89,7 @@
                 </md-input-container>
 
                 <div ng-if="OFFICE_MODE == 'BO' && models && models.length > 0">
-                    <md-subheader>{{ 'Specific models links' | translate }}</md-subheader>
+                    <md-subheader class="kb-dialog-section-subheader">{{ 'Specific models links' | translate }}</md-subheader>
 
                     <md-input-container class="md-block" layout="row" flex>
                         <label translate>Models</label>

@@ -29,7 +29,7 @@
                   </md-button>
                 </md-card>
 
-                <md-subheader ng-if="!amv.uuid && OFFICE_MODE == 'FO'" layout="row" layout-align="center"><strong>{{ 'Manual creation' | translate }}</strong></md-subheader><br />
+                <md-subheader class="kb-dialog-manual-creation-subheader" ng-if="!amv.uuid && OFFICE_MODE == 'FO'" layout="row" layout-align="center"><strong>{{ 'Manual creation' | translate }}</strong></md-subheader><br />
 
                 <md-autocomplete
                         ng-if="OFFICE_MODE == 'BO' || !amv.uuid"

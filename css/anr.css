@@ -104,6 +104,77 @@ a.blue {
     margin: 0 0;
 }
 
+/* Warn actions: destructive by default (delete/detach/remove). */
+.md-button.md-warn,
+.md-button.md-warn md-icon,
+.md-button.md-warn .material-icons,
+a[ng-click*="delete"] md-icon,
+a[ng-click*="detach"] md-icon,
+a[ng-click*="remove"] md-icon {
+    color: var(--anr-color-action-delete) !important;
+}
+
+.md-button.md-raised.md-warn,
+.md-button.md-fab.md-warn {
+    background-color: var(--anr-color-action-delete) !important;
+    color: var(--anr-color-text-on-dark) !important;
+}
+
+body .md-button.md-raised.md-warn:not([disabled]):hover,
+body .md-button.md-fab.md-warn:not([disabled]):hover {
+    background-color: var(--anr-color-action-emphasis) !important;
+}
+
+.md-button.md-raised.md-warn md-icon,
+.md-button.md-fab.md-warn md-icon {
+    color: var(--anr-color-text-on-dark) !important;
+}
+
+/* Export/download actions use dedicated brand color. */
+md-icon.md-warn,
+.md-button[ng-click*="export"] md-icon,
+.md-button[ng-click*="download"] md-icon,
+a[ng-click*="export"] md-icon,
+a[ng-click*="download"] md-icon,
+.md-button.md-warn[ng-click*="export"],
+.md-button.md-warn[ng-click*="download"],
+.md-button.md-warn[ng-click*="export"] md-icon,
+.md-button.md-warn[ng-click*="download"] md-icon {
+    color: var(--anr-color-action-export) !important;
+}
+
+/* Disabled state must override action colors (delete/export). */
+.md-button[disabled].md-warn,
+.md-button.md-disabled.md-warn,
+.md-button[disabled].md-warn .material-icons,
+.md-button.md-disabled.md-warn .material-icons,
+.md-button[disabled].md-warn md-icon,
+.md-button.md-disabled.md-warn md-icon,
+.md-button[disabled] md-icon.md-warn,
+.md-button.md-disabled md-icon.md-warn,
+.md-button[disabled][ng-click*="export"] md-icon,
+.md-button.md-disabled[ng-click*="export"] md-icon,
+.md-button[disabled][ng-click*="download"] md-icon,
+.md-button.md-disabled[ng-click*="download"] md-icon {
+    color: var(--anr-color-text-disabled) !important;
+}
+
+.md-button.md-raised.md-warn[disabled],
+.md-button.md-fab.md-warn[disabled],
+.md-button.md-raised.md-warn.md-disabled,
+.md-button.md-fab.md-warn.md-disabled {
+    background-color: var(--anr-color-surface-disabled) !important;
+    color: var(--anr-color-text-disabled) !important;
+    opacity: 1;
+}
+
+.md-button.md-raised.md-warn[disabled] md-icon,
+.md-button.md-fab.md-warn[disabled] md-icon,
+.md-button.md-raised.md-warn.md-disabled md-icon,
+.md-button.md-fab.md-warn.md-disabled md-icon {
+    color: var(--anr-color-text-disabled) !important;
+}
+
 td.no-border, th.no-border{
     border: 0px !important;
 }
@@ -199,6 +270,11 @@ table.md-table tbody.md-body>tr.md-row:hover {
 
 .anr-link-on-dark {
     color: var(--anr-color-text-on-dark-soft);
+}
+
+.anr-risks-filters-form {
+    justify-content: flex-end;
+    margin-left: 30px; 
 }
 
 .md-toolbar-pad {
@@ -541,9 +617,14 @@ md-input-container .hint.ng-leave, md-input-container .hint.ng-enter.ng-enter-ac
 
 /** Dropzone Area */
 .md-upload-dropbox {
-    background: var(--anr-color-surface-soft);
+    background: var(--anr-color-button-disabled);
+    padding: 10px;
     text-align: center;
     cursor: pointer;
+}
+
+.md-upload-dropbox.md-padding {
+    padding: 10px;
 }
 
 .md-upload-dropbox.dragover {
@@ -657,6 +738,7 @@ md-input-container .hint.ng-leave, md-input-container .hint.ng-enter.ng-enter-ac
 	color: var(--anr-color-text-on-dark-alt);
 	border-radius:2px;
 	width:40px;
+	margin:2px 0;
 	border:none;
 }
 .btn .bouton-false {
@@ -667,12 +749,22 @@ md-input-container .hint.ng-leave, md-input-container .hint.ng-enter.ng-enter-ac
 	color: var(--anr-color-text-secondary);
 	border-radius:2px;
 	width:40px;
-	border:1px solid var(--anr-color-border-light);
+	margin:2px 0;
+	border:none;
 }
 
-.bouton-false:disabled,
-.bouton-false[disabled]{
-  background: var(--anr-color-neutral-step-light);
+.btn button:disabled,
+.btn button[disabled] {
+  cursor: default;
+}
+
+.btn .bouton-true:disabled,
+.btn .bouton-true[disabled],
+.btn .bouton-false:disabled,
+.btn .bouton-false[disabled]{
+  background: var(--anr-color-button-disabled);
+  color: var(--anr-color-text-muted);
+  border:none;
 }
 
 
@@ -877,7 +969,7 @@ md-chips.md-default-theme .md-chips, md-chips .md-chips {
     font-size: 14px;
     padding-top: 5px;
     margin-right: 4px;
-    color: var(--anr-color-warning-dark) !important;
+    color: var(--anr-color-brand-primary-dark) !important;
 }
 
 .md-tree-unwrap-button .md-ripple-container {
@@ -897,10 +989,14 @@ md-chips.md-default-theme .md-chips, md-chips .md-chips {
 
 .active-obj {
     font-weight: bold;
-    color: var(--anr-color-warning-dark) !important;
+    color: var(--anr-color-brand-primary-dark) !important;
 }
 .active-obj md-icon {
-    color: var(--anr-color-warning-dark);
+    color: var(--anr-color-brand-primary-dark);
+}
+.active-obj > span {
+    color: var(--anr-color-text-secondary) !important;
+    font-weight: 400;
 }
 
 .forceBreakWord {
@@ -909,7 +1005,16 @@ md-chips.md-default-theme .md-chips, md-chips .md-chips {
 
 .active-inst {
     font-weight: bold;
-    color: var(--anr-color-success-dark);
+    color: var(--anr-color-brand-primary);
+}
+
+.active-inst.anr-active-header-text h2 {
+    color: var(--anr-color-brand-primary) !important;
+}
+
+.active-inst.anr-active-header-text > span {
+    color: var(--anr-color-text-secondary) !important;
+    font-weight: 400;
 }
 
 /** Resizable directive */
@@ -992,7 +1097,7 @@ md-chips.md-default-theme .md-chips, md-chips .md-chips {
     border-radius: 50%;
     width: 32px;
     height: 32px;
-    background-color: var(--anr-color-neutral-step);
+    background-color: var(--anr-color-neutral-step-light) !important;
 }
 
 .monarc-wizard.step-bullet > div {
@@ -1012,49 +1117,78 @@ md-chips.md-default-theme .md-chips, md-chips .md-chips {
 .monarc-wizard.step-line span {
     height: 4px;
     min-width: 30px;
-    background-color: var(--anr-color-neutral-step);
+    background-color: var(--anr-color-neutral-step-light) !important;
     display: block;
 }
 
 .monarc-wizard.step-bullet.white, .monarc-wizard.step-line span.white {
-    background-color: var(--anr-color-neutral-step-alt);
+    background-color: var(--anr-color-neutral-step-alt) !important;
 }
+
+.monarc-wizard.step-bullet.step-finish {
+    cursor: default;
+    pointer-events: none;
+}
+
+.anr-step-finish-icon {
+    width: 12px;
+    height: 16px;
+    display: block;
+}
+
+.monarc-wizard.step-bullet.step-finish.step-finish-incomplete {
+    background-color: var(--anr-color-neutral-step-light) !important;
+}
+
+.monarc-wizard.step-bullet.step-finish.step-finish-complete {
+    background-color: var(--anr-color-step-04) !important;
+}
+
 .monarc-wizard.step-bullet.green, .monarc-wizard.step-line span.green {
-    background-color: var(--anr-color-success);
+    background-color: var(--anr-color-step-01) !important;
 }
-.monarc-wizard.step-bullet.green:hover, .monarc-wizard.step-line:hover span.green {
-    background-color: var(--anr-color-success-darker);
+.monarc-wizard.step-bullet.green:hover {
+    background-color: var(--anr-color-step-hover) !important;
 }
 
 .monarc-wizard.step-bullet.blue, .monarc-wizard.step-line span.blue {
-    background-color: var(--anr-color-info);
+    background-color: var(--anr-color-step-02) !important;
 }
-.monarc-wizard.step-bullet.blue:hover, .monarc-wizard.step-line:hover span.blue {
-    background-color: var(--anr-color-info-dark);
+.monarc-wizard.step-bullet.blue:hover {
+    background-color: var(--anr-color-step-hover) !important;
 }
 
 .monarc-wizard.step-bullet.yellow, .monarc-wizard.step-line span.yellow {
-    background-color: var(--anr-color-warning-strong);
+    background-color: var(--anr-color-step-03) !important;
 }
-.monarc-wizard.step-bullet.yellow:hover, .monarc-wizard.step-line:hover span.yellow {
-    background-color: var(--anr-color-warning-darker);
+.monarc-wizard.step-bullet.yellow:hover {
+    background-color: var(--anr-color-step-hover) !important;
 }
 
 .monarc-wizard.step-bullet.red, .monarc-wizard.step-line span.red {
-    background-color: var(--anr-color-danger-strong);
+    background-color: var(--anr-color-step-04) !important;
 }
-.monarc-wizard.step-bullet.red:hover, .monarc-wizard.step-line:hover span.red {
-    background-color: var(--anr-color-danger-dark);
+.monarc-wizard.step-bullet.red:hover {
+    background-color: var(--anr-color-step-hover) !important;
 }
 
+md-progress-linear.green .md-bar {
+    background: var(--anr-color-step-01) !important;
+}
 md-progress-linear.blue .md-bar {
-    background: var(--anr-color-info);
+    background: var(--anr-color-step-02) !important;
 }
 md-progress-linear.yellow .md-bar {
-    background: var(--anr-color-warning-strong);
+    background: var(--anr-color-step-03) !important;
 }
-md-progress-linear.yellow .md-container {
-    background-color: var(--anr-color-warning-soft);
+md-progress-linear.red .md-bar {
+    background: var(--anr-color-step-04) !important;
+}
+md-progress-linear.green .md-container,
+md-progress-linear.blue .md-container,
+md-progress-linear.yellow .md-container,
+md-progress-linear.red .md-container {
+    background-color: var(--anr-color-neutral-step-light) !important;
 }
 
 .md-monarc-method-box {
@@ -1075,7 +1209,7 @@ md-progress-linear.yellow .md-container {
 .w120p{ width: 120px !important; }
 
 .anr-importance {
-    color: var(--anr-color-danger-attention);
+    color: var(--anr-color-action-emphasis);
     font-size: 14px;
     font-weight: bold;
 }
@@ -1385,7 +1519,7 @@ md-select-menu md-content
 }
 
 .treeview2.instances p:hover{
-    color: var(--anr-color-success-dark);
+    color: var(--anr-color-brand-primary-dark);
 }
 
 .md-autocomplete-suggestions-container{
@@ -1418,9 +1552,23 @@ md-select-menu md-content
     margin-right: 210px;
 }
 
+.record-tabs md-tab-content [layout="row"][layout-align="space-between center"] {
+    background-color: var(--anr-color-surface-section-header);
+    margin: 25px 0;
+}
+
 .record-tabs md-next-button{
     right:190px;
 }
+
+.md-dialog-content .md-subheader.kb-dialog-manual-creation-subheader {
+    margin-top: 45px !important;
+}
+
+.kb-dialog-section-subheader {
+    background-color: var(--anr-color-surface-section-header) !important;
+}
+
 .processor-tabs md-tabs-canvas{
     margin-right: 60px;
 }

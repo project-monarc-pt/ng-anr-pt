@@ -1,55 +1,57 @@
 :root {
     /* Brand */
-    --anr-color-brand-primary: #006FBA;
-    --anr-color-brand-primary-light: #2196F3;
-    --anr-color-brand-primary-lighter: #90CAF9;
-    --anr-color-brand-primary-soft: #E3F2FD;
-    --anr-color-brand-primary-soft-alt: #e3f2fd;
-    --anr-color-brand-primary-dark: #0D47A1;
-    --anr-color-brand-loading-track: #ffde7d;
-    --anr-color-brand-loading-bar: #ffc107;
+    --anr-color-brand-primary: #308AA1;
+    --anr-color-brand-primary-light: #78909C;
+    --anr-color-brand-primary-lighter: #BCBEC0;
+    --anr-color-brand-primary-soft: #BCBEC0;
+    --anr-color-brand-primary-soft-alt: #BCBEC0;
+    --anr-color-brand-primary-dark: #59717C;
+    --anr-color-brand-loading-track: #BCBEC0;
+    --anr-color-brand-loading-bar: #308AA1;
 
     /* Text */
-    --anr-color-text-primary: #333333;
-    --anr-color-text-primary-alt: #333;
-    --anr-color-text-secondary: #555;
-    --anr-color-text-muted: #666666;
-    --anr-color-text-disabled: #8A8A8A;
-    --anr-color-text-disabled-soft: #b7b7b7;
-    --anr-color-text-placeholder: grey;
-    --anr-color-text-dark: black;
+    --anr-color-text-primary: #231F20;
+    --anr-color-text-primary-alt: #231F20;
+    --anr-color-text-secondary: #6D6F71;
+    --anr-color-text-muted: #939598;
+    --anr-color-text-disabled: #939598;
+    --anr-color-text-disabled-soft: #BCBEC0;
+    --anr-color-text-placeholder: #939598;
+    --anr-color-text-dark: #231F20;
     --anr-color-text-on-dark: white;
     --anr-color-text-on-dark-alt: #fff;
     --anr-color-text-on-dark-soft: rgba(255,255,255,0.87);
-    --anr-color-icon-muted: rgba(0,0,0,0.54);
-    --anr-color-text-default-rgba: rgba(0, 0, 0, 0.87);
-    --anr-color-text-placeholder-rgba: rgba(0,0,0,0.38);
+    --anr-color-icon-muted: rgba(35, 31, 32, 0.54);
+    --anr-color-text-default-rgba: rgba(35, 31, 32, 0.87);
+    --anr-color-text-placeholder-rgba: rgba(35, 31, 32, 0.38);
 
     /* Surfaces */
-    --anr-color-surface-dark: #333333;
-    --anr-color-surface-light: #F0F0F0;
-    --anr-color-surface-light-alt: #F1F1F1;
-    --anr-color-surface-soft: #EEEEEE;
-    --anr-color-surface-soft-alt: #EAEAEA;
-    --anr-color-surface-formula: #F4F4F4;
-    --anr-color-surface-button-hover: #e7e7e7;
+    --anr-color-surface-dark: #231F20;
+    --anr-color-surface-light: #FFFFFF;
+    --anr-color-surface-light-alt: #FFFFFF;
+    --anr-color-surface-soft: #BCBEC0;
+    --anr-color-surface-soft-alt: #BCBEC0;
+    --anr-color-surface-section-header: rgba(188, 190, 192, 0.45);
+    --anr-color-surface-disabled: #BCBEC0;
+    --anr-color-surface-formula: #FFFFFF;
+    --anr-color-surface-button-hover: #BCBEC0;
     --anr-color-surface-row-alt: rgba(1, 1, 1, 0.02);
-    --anr-color-surface-tree-hover: rgba(85, 85, 85, .07);
-    --anr-color-surface-overlay: rgba(0, 0, 0, 0.9);
+    --anr-color-surface-tree-hover: rgba(35, 31, 32, 0.07);
+    --anr-color-surface-overlay: rgba(35, 31, 32, 0.9);
     --anr-color-surface-white: #FFFFFF;
     --anr-color-surface-white-alt: #fff;
 
     /* Borders */
-    --anr-color-border-default: #DDDDDD;
-    --anr-color-border-strong: #AAAAAA;
-    --anr-color-border-strong-alt: #AAA;
-    --anr-color-border-muted: #BBBBBB;
-    --anr-color-border-light: #ccc;
-    --anr-color-border-light-alt: #d6d6d6;
-    --anr-color-border-lightest: #ddd;
-    --anr-color-border-panel: #DEDEDE;
-    --anr-color-border-panel-hover: #BEBEBE;
-    --anr-color-border-drag: #33B5E5;
+    --anr-color-border-default: #BCBEC0;
+    --anr-color-border-strong: #939598;
+    --anr-color-border-strong-alt: #939598;
+    --anr-color-border-muted: #BCBEC0;
+    --anr-color-border-light: #BCBEC0;
+    --anr-color-border-light-alt: #BCBEC0;
+    --anr-color-border-lightest: #BCBEC0;
+    --anr-color-border-panel: #BCBEC0;
+    --anr-color-border-panel-hover: #939598;
+    --anr-color-border-drag: #308AA1;
 
     /* Status */
     --anr-color-success: #4CAF50;
@@ -72,19 +74,28 @@
     --anr-color-danger-soft: #FFCDD2;
     --anr-color-danger-soft-alt: #EF9A9A;
     --anr-color-danger-attention: #FF5722;
-    --anr-color-danger-error: red;
+    --anr-color-danger-error: #dd2c00;
     --anr-color-danger-edit: tomato;
 
-    --anr-color-info: #03A9F4;
-    --anr-color-info-dark: #01579B;
+    --anr-color-info: #308AA1;
+    --anr-color-info-dark: #59717C;
+    --anr-color-action-emphasis: #59717C;
+    --anr-color-action-delete: #308AA1;
+    --anr-color-action-export: #308AA1;
 
     /* Wizard / neutral */
-    --anr-color-neutral-step: #9E9E9E;
-    --anr-color-neutral-step-alt: #607D8B;
-    --anr-color-neutral-step-light: #BDBDBD;
-    --anr-color-button-true: #478bf9;
-    --anr-color-button-false: #f5f5f5;
-    --anr-color-tree-toggle-hover: #DFDFDF;
+    --anr-color-neutral-step: #939598;
+    --anr-color-neutral-step-alt: #6D6F71;
+    --anr-color-neutral-step-light: #BCBEC0;
+    --anr-color-step-01: #78909C;
+    --anr-color-step-02: #627D8C;
+    --anr-color-step-03: #59717C;
+    --anr-color-step-04: #6D6F71;
+    --anr-color-step-hover: #231F20;
+    --anr-color-button-true: #308AA1;
+    --anr-color-button-false: rgba(188,190,192,0.50);
+    --anr-color-button-disabled: rgba(188,190,192,0.18);
+    --anr-color-tree-toggle-hover: #BCBEC0;
 
     /* Shadows */
     --anr-color-shadow-soft: rgba(0,0,0,0.25);

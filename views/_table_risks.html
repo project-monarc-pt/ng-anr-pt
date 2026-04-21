@@ -10,7 +10,7 @@
         <md-progress-circular md-diameter="20" ng-if="anr_risks_table_loading"></md-progress-circular>
         <md-card ng-if="(instmode == 'anr' || instmode == 'inst') && !sheet_risk && OFFICE_MODE == 'FO'">
             <div layout="row" layout-wrap class="md-padding-left md-padding-right">
-                <form layout="row" layout-wrap layout-align="center center" class="md-padding-left md-padding-right" ng-submit="updateInstanceRisks ? updateInstanceRisks() : updateAnrRisksTable()">
+                <form layout="row" layout-wrap layout-align="end center" class="md-padding-left md-padding-right anr-risks-filters-form" ng-submit="updateInstanceRisks ? updateInstanceRisks() : updateAnrRisksTable()">
                     <input type="submit" style="position: absolute; left: -99999px">
                     <span ng-if="instmode == 'anr' || instmode == 'inst'">{{ 'Risk threshold (on max CIA)' | translate }}&nbsp;</span>
                     <md-radio-group ng-if="instmode == 'anr' || instmode == 'inst'" ng-model="risks_filters.thresholds" layout="row" class="md-primary">

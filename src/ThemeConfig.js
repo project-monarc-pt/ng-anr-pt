@@ -6,25 +6,25 @@
       return {
         // Graph rendering and graph image export settings.
         charts: {
-          textPrimary: 'rgba(0,0,0,0.87)',
-          textSecondary: '#737373',
+          textPrimary: 'rgba(35,31,32,0.87)',
+          textSecondary: '#6D6F71',
           textOnDark: '#FFFFFF',
 
           surfacePrimary: '#FFFFFF',
 
-          borderPrimary: '#000000',
-          gridStroke: 'grey',
-          gridStrokeLight: 'lightgrey',
+          borderPrimary: '#231F20',
+          gridStroke: '#939598',
+          gridStrokeLight: '#BCBEC0',
 
-          brandPrimary: '#006FBA',
+          brandPrimary: '#308AA1',
 
-          riskScale: ['#D6F107', '#FFBC1C', '#FD661F'],
-          riskScaleReversed: ['#FD661F', '#FFBC1C', '#D6F107'],
+          categoryScale: ['#308AA1', '#231F20', '#BCBEC0', '#78909C', '#6D6F71'],
+          riskScale: ['#BCBEC0', '#78909C', '#231F20'],
 
           tooltip: {
             background: '#FFFFFF',
-            text: 'rgba(0,0,0,0.87)',
-            border: '#000000'
+            text: 'rgba(35,31,32,0.87)',
+            border: '#231F20'
           },
 
           export: {
@@ -38,11 +38,10 @@
 
         // Shared brand assets.
         branding: {
-          logo: 'img/logo-monarc.png',
-          layoutLogo: 'img/monarc.png'
+          progressFinishIcon: 'img/img/CNCS_pictograma_branco.svg'
         },
 
-        // Shared typography settings for JS consumers (charts, canvas, exports).
+        // Shared typography settings for JS consumers.
         typography: {
           fontFamily: 'Arial, "Open Sans", sans-serif'
         }

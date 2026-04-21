@@ -12,8 +12,13 @@
                 <md-progress-linear class="{{ ::step.color }}" md-mode="determinate" ng-value="getStepProgress(step) * 100 / step.steps.length"></md-progress-linear>
             </div>
 
-            <div ng-if="OFFICE_MODE == 'FO'" class="monarc-wizard step-bullet white" layout="row" layout-align="center center">
-                <img ng-src="{{ anrBrandLogo }}" style="width: 70%" />
+            <div
+                ng-if="OFFICE_MODE == 'FO'"
+                class="monarc-wizard step-bullet step-finish"
+                ng-class="isMethodWorkflowComplete() ? 'step-finish-complete' : 'step-finish-incomplete'"
+                layout="row"
+                layout-align="center center">
+                <img class="anr-step-finish-icon" ng-src="{{ anrBrandLogo }}" alt="Finish">
             </div>
         </div>
 
