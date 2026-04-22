@@ -38,7 +38,7 @@
 
         // Shared brand assets.
         branding: {
-          progressFinishIcon: 'img/img/CNCS_pictograma_branco.svg'
+          progressFinishIcon: 'img/CNCS_pictograma_branco.svg'
         },
 
         // Shared typography settings for JS consumers.
