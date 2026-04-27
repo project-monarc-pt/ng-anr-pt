@@ -120,10 +120,10 @@
                     </div>
                 </md-input-container>
 
-                <md-input-container layout="row">
-                    <md-checkbox ng-model="threat.c" class="md-primary">C</md-checkbox>
-                    <md-checkbox ng-model="threat.i" class="md-primary">I</md-checkbox>
-                    <md-checkbox ng-model="threat.a" class="md-primary">{{ 'A' | translate }}</md-checkbox>
+                <md-input-container layout="row" class="anr-cia-checkbox-row">
+                    <md-checkbox ng-model="threat.c" class="md-primary md-checkbox-no-bottom-margin">C</md-checkbox>
+                    <md-checkbox ng-model="threat.i" class="md-primary md-checkbox-no-bottom-margin">I</md-checkbox>
+                    <md-checkbox ng-model="threat.a" class="md-primary md-checkbox-no-bottom-margin">{{ 'A' | translate }}</md-checkbox>
                 </md-input-container>
 
                 <div ng-if="OFFICE_MODE == 'BO'">

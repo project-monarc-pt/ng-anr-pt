@@ -36,7 +36,7 @@
                 </md-button>
             </div>
 
-            <md-toolbar class="md-table-toolbar alternate" ng-if="assets.selected.length">
+            <md-toolbar class="md-table-toolbar alternate selected-toolbar" ng-if="assets.selected.length">
                 <div class="md-toolbar-tools md-toolbar-pad" layout-align="space-between center">
                     <div>{{assets.selected.length}} {{assets.selected.length > 1 ? 'items' : 'item'}} selected</div>
                     <md-button ng-if="!isAnrReadOnly" class="md-icon-button md-warn" ng-click="deleteAssetMass($event)">
@@ -111,7 +111,7 @@
                 </md-button>
             </div>
 
-            <md-toolbar class="md-table-toolbar alternate" ng-if="threats.selected.length">
+            <md-toolbar class="md-table-toolbar alternate selected-toolbar" ng-if="threats.selected.length">
                 <div class="md-toolbar-tools md-toolbar-pad" layout-align="space-between center">
                     <div>{{threats.selected.length}} {{threats.selected.length > 1 ? 'items' : 'item'}} selected</div>
                     <md-button ng-if="!isAnrReadOnly" class="md-icon-button md-warn" ng-click="deleteThreatMass($event)">
@@ -188,7 +188,7 @@
                 </md-button>
             </div>
 
-            <md-toolbar class="md-table-toolbar alternate" ng-if="vulns.selected.length">
+            <md-toolbar class="md-table-toolbar alternate selected-toolbar" ng-if="vulns.selected.length">
                 <div class="md-toolbar-tools md-toolbar-pad" layout-align="space-between center">
                     <div>{{vulns.selected.length}} {{vulns.selected.length > 1 ? 'items' : 'item'}} selected</div>
                     <md-button ng-if="!isAnrReadOnly" class="md-icon-button md-warn" ng-click="deleteVulnMass($event)">
@@ -287,7 +287,7 @@
                       <md-tooltip>{{ 'Export' | translate }} (CSV)</md-tooltip>
                   </md-button>
               </div>
-              <md-toolbar class="md-table-toolbar alternate" ng-if="measures.selected.length">
+              <md-toolbar class="md-table-toolbar alternate selected-toolbar" ng-if="measures.selected.length">
                   <div class="md-toolbar-tools md-toolbar-pad" layout-align="space-between center">
                       <div>{{measures.selected.length}} {{measures.selected.length > 1 ? 'items' : 'item'}} selected</div>
                       <md-button ng-if="!isAnrReadOnly" class="md-icon-button md-warn" ng-click="deleteMeasureMass($event)">
@@ -378,7 +378,7 @@
                 </md-button>
             </div>
 
-            <md-toolbar class="md-table-toolbar alternate" ng-if="amvs.selected.length">
+            <md-toolbar class="md-table-toolbar alternate selected-toolbar" ng-if="amvs.selected.length">
                 <div class="md-toolbar-tools md-toolbar-pad" layout-align="space-between center">
                     <div>{{amvs.selected.length}} {{amvs.selected.length > 1 ? 'items' : 'item'}} selected</div>
                     <md-button ng-if="!isAnrReadOnly" class="md-icon-button md-warn" ng-click="deleteAmvMass($event)">
@@ -453,7 +453,7 @@
                 </md-button>
             </div>
 
-            <md-toolbar class="md-table-toolbar alternate" ng-show="tags.selected.length">
+            <md-toolbar class="md-table-toolbar alternate selected-toolbar" ng-show="tags.selected.length">
                 <div class="md-toolbar-tools" layout-align="space-between center">
                     <div>{{tags.selected.length}} {{tags.selected.length > 1 ? 'items' : 'item'}} selected
                     </div>
@@ -546,7 +546,7 @@
                   </md-button>
             </div>
 
-            <md-toolbar class="md-table-toolbar alternate" ng-show="risks.selected.length">
+            <md-toolbar class="md-table-toolbar alternate selected-toolbar" ng-show="risks.selected.length">
                 <div class="md-toolbar-tools" layout-align="space-between center">
                     <div>{{risks.selected.length}} {{risks.selected.length > 1 ? 'items' : 'item'}} selected
                     </div>
@@ -655,7 +655,7 @@
                     </md-button>
                 </div>
 
-                <md-toolbar class="md-table-toolbar alternate" ng-if="recommendations.selected.length">
+                <md-toolbar class="md-table-toolbar alternate selected-toolbar" ng-if="recommendations.selected.length">
                     <div class="md-toolbar-tools md-toolbar-pad" layout-align="space-between center">
                         <div>{{recommendations.selected.length}} {{recommendations.selected.length > 1 ? 'items' : 'item'}} selected</div>
                         <md-button ng-if="!isAnrReadOnly" class="md-icon-button md-warn" ng-click="deleteMassRecommendation($event)">

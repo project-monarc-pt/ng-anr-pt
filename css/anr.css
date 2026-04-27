@@ -286,6 +286,101 @@ table.md-table tbody.md-body>tr.md-row:hover {
     font-weight: bold !important;
 }
 
+/* Override angular-toastr defaults with MONARC status palette. */
+#toast-container .toast.toast-success {
+    background-color: var(--anr-color-success) !important;
+}
+
+#toast-container .toast.toast-warning {
+    background-color: var(--anr-color-warning) !important;
+}
+
+#toast-container .toast.toast-error {
+    background-color: var(--anr-color-danger) !important;
+}
+
+#toast-container .toast.toast-info {
+    background-color: var(--anr-color-info-dark) !important;
+}
+
+#toast-container .toast,
+#toast-container .toast:hover {
+    opacity: 1 !important;
+    box-shadow: 0 1px 4px rgba(35, 31, 32, 0.12) !important;
+}
+
+#toast-container .toast.toast-success,
+#toast-container .toast.toast-warning,
+#toast-container .toast.toast-error,
+#toast-container .toast.toast-info {
+    background-image: none !important;
+    position: relative;
+}
+
+#toast-container .toast.toast-success::before,
+#toast-container .toast.toast-warning::before,
+#toast-container .toast.toast-error::before,
+#toast-container .toast.toast-info::before {
+    content: "";
+    position: absolute;
+    left: 15px;
+    top: 50%;
+    width: 24px;
+    height: 24px;
+    transform: translateY(-50%);
+    background-color: currentColor;
+    -webkit-mask-position: center;
+    -webkit-mask-repeat: no-repeat;
+    -webkit-mask-size: contain;
+    mask-position: center;
+    mask-repeat: no-repeat;
+    mask-size: contain;
+}
+
+#toast-container .toast.toast-success::before {
+    -webkit-mask-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADsSURBVEhLY2AYBfQMgf///3P8+/evAIgvA/FsIF+BavYDDWMBGroaSMMBiE8VC7AZDrIFaMFnii3AZTjUgsUUWUDA8OdAH6iQbQEhw4HyGsPEcKBXBIC4ARhex4G4BsjmweU1soIFaGg/WtoFZRIZdEvIMhxkCCjXIVsATV6gFGACs4Rsw0EGgIIH3QJYJgHSARQZDrWAB+jawzgs+Q2UO49D7jnRSRGoEFRILcdmEMWGI0cm0JJ2QpYA1RDvcmzJEWhABhD/pqrL0S0CWuABKgnRki9lLseS7g2AlqwHWQSKH4oKLrILpRGhEQCw2LiRUIa4lwAAAABJRU5ErkJggg==");
+    mask-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAADsSURBVEhLY2AYBfQMgf///3P8+/evAIgvA/FsIF+BavYDDWMBGroaSMMBiE8VC7AZDrIFaMFnii3AZTjUgsUUWUDA8OdAH6iQbQEhw4HyGsPEcKBXBIC4ARhex4G4BsjmweU1soIFaGg/WtoFZRIZdEvIMhxkCCjXIVsATV6gFGACs4Rsw0EGgIIH3QJYJgHSARQZDrWAB+jawzgs+Q2UO49D7jnRSRGoEFRILcdmEMWGI0cm0JJ2QpYA1RDvcmzJEWhABhD/pqrL0S0CWuABKgnRki9lLseS7g2AlqwHWQSKH4oKLrILpRGhEQCw2LiRUIa4lwAAAABJRU5ErkJggg==");
+}
+
+#toast-container .toast.toast-warning::before {
+    -webkit-mask-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGYSURBVEhL5ZSvTsNQFMbXZGICMYGYmJhAQIJAICYQPAACiSDB8AiICQQJT4CqQEwgJvYASAQCiZiYmJhAIBATCARJy+9rTsldd8sKu1M0+dLb057v6/lbq/2rK0mS/TRNj9cWNAKPYIJII7gIxCcQ51cvqID+GIEX8ASG4B1bK5gIZFeQfoJdEXOfgX4QAQg7kH2A65yQ87lyxb27sggkAzAuFhbbg1K2kgCkB1bVwyIR9m2L7PRPIhDUIXgGtyKw575yz3lTNs6X4JXnjV+LKM/m3MydnTbtOKIjtz6VhCBq4vSm3ncdrD2lk0VgUXSVKjVDJXJzijW1RQdsU7F77He8u68koNZTz8Oz5yGa6J3H3lZ0xYgXBK2QymlWWA+RWnYhskLBv2vmE+hBMCtbA7KX5drWyRT/2JsqZ2IvfB9Y4bWDNMFbJRFmC9E74SoS0CqulwjkC0+5bpcV1CZ8NMej4pjy0U+doDQsGyo1hzVJttIjhQ7GnBtRFN1UarUlH8F3xict+HY07rEzoUGPlWcjRFRr4/gChZgc3ZL2d8oAAAAASUVORK5CYII=");
+    mask-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGYSURBVEhL5ZSvTsNQFMbXZGICMYGYmJhAQIJAICYQPAACiSDB8AiICQQJT4CqQEwgJvYASAQCiZiYmJhAIBATCARJy+9rTsldd8sKu1M0+dLb057v6/lbq/2rK0mS/TRNj9cWNAKPYIJII7gIxCcQ51cvqID+GIEX8ASG4B1bK5gIZFeQfoJdEXOfgX4QAQg7kH2A65yQ87lyxb27sggkAzAuFhbbg1K2kgCkB1bVwyIR9m2L7PRPIhDUIXgGtyKw575yz3lTNs6X4JXnjV+LKM/m3MydnTbtOKIjtz6VhCBq4vSm3ncdrD2lk0VgUXSVKjVDJXJzijW1RQdsU7F77He8u68koNZTz8Oz5yGa6J3H3lZ0xYgXBK2QymlWWA+RWnYhskLBv2vmE+hBMCtbA7KX5drWyRT/2JsqZ2IvfB9Y4bWDNMFbJRFmC9E74SoS0CqulwjkC0+5bpcV1CZ8NMej4pjy0U+doDQsGyo1hzVJttIjhQ7GnBtRFN1UarUlH8F3xict+HY07rEzoUGPlWcjRFRr4/gChZgc3ZL2d8oAAAAASUVORK5CYII=");
+}
+
+#toast-container .toast.toast-error::before {
+    -webkit-mask-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHOSURBVEhLrZa/SgNBEMZzh0WKCClSCKaIYOED+AAKeQQLG8HWztLCImBrYadgIdY+gIKNYkBFSwu7CAoqCgkkoGBI/E28PdbLZmeDLgzZzcx83/zZ2SSXC1j9fr+I1Hq93g2yxH4iwM1vkoBWAdxCmpzTxfkN2RcyZNaHFIkSo10+8kgxkXIURV5HGxTmFuc75B2RfQkpxHG8aAgaAFa0tAHqYFfQ7Iwe2yhODk8+J4C7yAoRTWI3w/4klGRgR4lO7Rpn9+gvMyWp+uxFh8+H+ARlgN1nJuJuQAYvNkEnwGFck18Er4q3egEc/oO+mhLdKgRyhdNFiacC0rlOCbhNVz4H9FnAYgDBvU3QIioZlJFLJtsoHYRDfiZoUyIxqCtRpVlANq0EU4dApjrtgezPFad5S19Wgjkc0hNVnuF4HjVA6C7QrSIbylB+oZe3aHgBsqlNqKYH48jXyJKMuAbiyVJ8KzaB3eRc0pg9VwQ4niFryI68qiOi3AbjwdsfnAtk0bCjTLJKr6mrD9g8iq/S/B81hguOMlQTnVyG40wAcjnmgsCNESDrjme7wfftP4P7SP4N3CJZdvzoNyGq2c/HWOXJGsvVg+RA/k2MC/wN6I2YA2Pt8GkAAAAASUVORK5CYII=");
+    mask-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAHOSURBVEhLrZa/SgNBEMZzh0WKCClSCKaIYOED+AAKeQQLG8HWztLCImBrYadgIdY+gIKNYkBFSwu7CAoqCgkkoGBI/E28PdbLZmeDLgzZzcx83/zZ2SSXC1j9fr+I1Hq93g2yxH4iwM1vkoBWAdxCmpzTxfkN2RcyZNaHFIkSo10+8kgxkXIURV5HGxTmFuc75B2RfQkpxHG8aAgaAFa0tAHqYFfQ7Iwe2yhODk8+J4C7yAoRTWI3w/4klGRgR4lO7Rpn9+gvMyWp+uxFh8+H+ARlgN1nJuJuQAYvNkEnwGFck18Er4q3egEc/oO+mhLdKgRyhdNFiacC0rlOCbhNVz4H9FnAYgDBvU3QIioZlJFLJtsoHYRDfiZoUyIxqCtRpVlANq0EU4dApjrtgezPFad5S19Wgjkc0hNVnuF4HjVA6C7QrSIbylB+oZe3aHgBsqlNqKYH48jXyJKMuAbiyVJ8KzaB3eRc0pg9VwQ4niFryI68qiOi3AbjwdsfnAtk0bCjTLJKr6mrD9g8iq/S/B81hguOMlQTnVyG40wAcjnmgsCNESDrjme7wfftP4P7SP4N3CJZdvzoNyGq2c/HWOXJGsvVg+RA/k2MC/wN6I2YA2Pt8GkAAAAASUVORK5CYII=");
+}
+
+#toast-container .toast.toast-info::before {
+    -webkit-mask-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGwSURBVEhLtZa9SgNBEMc9sUxxRcoUKSzSWIhXpFMhhYWFhaBg4yPYiWCXZxBLERsLRS3EQkEfwCKdjWJAwSKCgoKCcudv4O5YLrt7EzgXhiU3/4+b2ckmwVjJSpKkQ6wAi4gwhT+z3wRBcEz0yjSseUTrcRyfsHsXmD0AmbHOC9Ii8VImnuXBPglHpQ5wwSVM7sNnTG7Za4JwDdCjxyAiH3nyA2mtaTJufiDZ5dCaqlItILh1NHatfN5skvjx9Z38m69CgzuXmZgVrPIGE763Jx9qKsRozWYw6xOHdER+nn2KkO+Bb+UV5CBN6WC6QtBgbRVozrahAbmm6HtUsgtPC19tFdxXZYBOfkbmFJ1VaHA1VAHjd0pp70oTZzvR+EVrx2Ygfdsq6eu55BHYR8hlcki+n+kERUFG8BrA0BwjeAv2M8WLQBtcy+SD6fNsmnB3AlBLrgTtVW1c2QN4bVWLATaIS60J2Du5y1TiJgjSBvFVZgTmwCU+dAZFoPxGEEs8nyHC9Bwe2GvEJv2WXZb0vjdyFT4Cxk3e/kIqlOGoVLwwPevpYHT+00T+hWwXDf4AJAOUqWcDhbwAAAAASUVORK5CYII=");
+    mask-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAGwSURBVEhLtZa9SgNBEMc9sUxxRcoUKSzSWIhXpFMhhYWFhaBg4yPYiWCXZxBLERsLRS3EQkEfwCKdjWJAwSKCgoKCcudv4O5YLrt7EzgXhiU3/4+b2ckmwVjJSpKkQ6wAi4gwhT+z3wRBcEz0yjSseUTrcRyfsHsXmD0AmbHOC9Ii8VImnuXBPglHpQ5wwSVM7sNnTG7Za4JwDdCjxyAiH3nyA2mtaTJufiDZ5dCaqlItILh1NHatfN5skvjx9Z38m69CgzuXmZgVrPIGE763Jx9qKsRozWYw6xOHdER+nn2KkO+Bb+UV5CBN6WC6QtBgbRVozrahAbmm6HtUsgtPC19tFdxXZYBOfkbmFJ1VaHA1VAHjd0pp70oTZzvR+EVrx2Ygfdsq6eu55BHYR8hlcki+n+kERUFG8BrA0BwjeAv2M8WLQBtcy+SD6fNsmnB3AlBLrgTtVW1c2QN4bVWLATaIS60J2Du5y1TiJgjSBvFVZgTmwCU+dAZFoPxGEEs8nyHC9Bwe2GvEJv2WXZb0vjdyFT4Cxk3e/kIqlOGoVLwwPevpYHT+00T+hWwXDf4AJAOUqWcDhbwAAAAASUVORK5CYII=");
+}
+
+#toast-container .toast.toast-success,
+#toast-container .toast.toast-warning {
+    color: var(--anr-color-text-dark) !important;
+}
+
+#toast-container .toast.toast-success .toast-title,
+#toast-container .toast.toast-success .toast-message,
+#toast-container .toast.toast-success .toast-message a,
+#toast-container .toast.toast-success .toast-message label,
+#toast-container .toast.toast-success .toast-close-button,
+#toast-container .toast.toast-warning .toast-title,
+#toast-container .toast.toast-warning .toast-message,
+#toast-container .toast.toast-warning .toast-message a,
+#toast-container .toast.toast-warning .toast-message label,
+#toast-container .toast.toast-warning .toast-close-button {
+    color: var(--anr-color-text-dark) !important;
+    text-shadow: none !important;
+}
+
+#toast-container .toast.toast-error,
+#toast-container .toast.toast-info {
+    color: var(--anr-color-text-on-dark) !important;
+}
+
 .txtcenter {
     text-align: center
 }
@@ -464,7 +559,31 @@ md-input-container .hint.ng-leave, md-input-container .hint.ng-enter.ng-enter-ac
 }
 
 .md-card-info {
-    background-color: var(--anr-color-brand-primary-soft) !important;
+    background-color: var(--anr-color-surface-info-banner) !important;
+    color: var(--anr-color-brand-primary-dark) !important;
+}
+
+.anr-info-card {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+.anr-info-card-content {
+    padding: 0 !important;
+}
+
+.anr-info-banner {
+    background-color: var(--anr-color-surface-info-banner) !important;
+    color: var(--anr-color-brand-primary-dark) !important;
+    border-radius: 2px;
+    padding: 18px 10px;
+    font-size: 16px;
+    min-height: 0;
+    height: auto;
+}
+
+.anr-link-on-info,
+.anr-link-on-info md-icon.material-icons {
     color: var(--anr-color-brand-primary-dark) !important;
 }
 
@@ -623,6 +742,11 @@ md-input-container .hint.ng-leave, md-input-container .hint.ng-enter.ng-enter-ac
     cursor: pointer;
 }
 
+.md-upload-dropbox.md-whiteframe-3dp {
+    box-shadow: unset !important;
+    border: 1px solid var(--anr-color-border-input-default)!important;
+}
+
 .md-upload-dropbox.md-padding {
     padding: 10px;
 }
@@ -643,6 +767,14 @@ md-input-container .hint.ng-leave, md-input-container .hint.ng-enter.ng-enter-ac
     color: var(--anr-color-text-on-dark);
 }
 
+.md-upload-dropbox.ng-empty {
+    color: var(--anr-color-text-secondary);
+}
+
+.md-upload-dropbox.ng-not-empty {
+    color: var(--anr-color-text-primary);
+}
+
 /** Calculation of risk */
 .tbl-risk-calc {
     text-align: center;
@@ -661,17 +793,17 @@ md-input-container .hint.ng-leave, md-input-container .hint.ng-enter.ng-enter-ac
 }
 
 .tbl-risk-calc .green, .tbl-risk-calc.green {
-    background: var(--anr-color-success-risk);
+    background: var(--anr-risk-green);
     color: var(--anr-color-text-dark);
 }
 
 .tbl-risk-calc .orange, .tbl-risk-calc.orange {
-    background: var(--anr-color-warning);
+    background: var(--anr-risk-orage);
     color: var(--anr-color-text-dark);
 }
 
 .tbl-risk-calc .red, .tbl-risk-calc.red {
-    background: var(--anr-color-danger);
+    background: var(--anr-risk-red);
     color: var(--anr-color-text-on-dark);
 }
 
@@ -774,12 +906,16 @@ md-input-container .hint.ng-leave, md-input-container .hint.ng-enter.ng-enter-ac
 }
 
 .anr-scales-demo-block.green {
-    background: var(--anr-color-success-risk);
+    background: var(--anr-risk-green);
 }
 
 .anr-scales-demo-block.orange {
-    background: var(--anr-color-warning);
+    background: var(--anr-risk-orage);
 
+}
+
+.anr-scales-demo-block.red {
+    background: var(--anr-risk-red);
 }
 
 .horz-expanding-impacts-table {
@@ -1131,45 +1267,58 @@ md-chips.md-default-theme .md-chips, md-chips .md-chips {
 }
 
 .anr-step-finish-icon {
-    width: 12px;
-    height: 16px;
+    width: 14px;
+    height: 18px;
     display: block;
 }
 
+
+.monarc-wizard.step-bullet.green, .monarc-wizard.step-line span.green {
+    background-color: var(--anr-color-step-01-soft) !important;
+}
+.monarc-wizard.step-bullet.step-complete.green, .monarc-wizard.step-line span.step-complete.green {
+    background-color: var(--anr-color-step-01) !important;
+}
+.monarc-wizard.step-bullet.green:hover {
+    background-color: var(--anr-color-success-dark) !important;
+}
+
+.monarc-wizard.step-bullet.blue, .monarc-wizard.step-line span.blue {
+    background-color: var(--anr-color-step-02-soft) !important;
+}
+.monarc-wizard.step-bullet.step-complete.blue, .monarc-wizard.step-line span.step-complete.blue {
+    background-color: var(--anr-color-step-02) !important;
+}
+.monarc-wizard.step-bullet.blue:hover {
+    background-color: var(--anr-color-info-dark) !important;
+}
+
+.monarc-wizard.step-bullet.yellow, .monarc-wizard.step-line span.yellow {
+    background-color: var(--anr-color-step-03-soft) !important;
+}
+.monarc-wizard.step-bullet.step-complete.yellow, .monarc-wizard.step-line span.step-complete.yellow {
+    background-color: var(--anr-color-step-03) !important;
+}
+.monarc-wizard.step-bullet.yellow:hover {
+    background-color: var(--anr-color-warning-dark) !important;
+}
+
+.monarc-wizard.step-bullet.red, .monarc-wizard.step-line span.red {
+    background-color: var(--anr-color-step-04-soft) !important;
+}
+.monarc-wizard.step-bullet.step-complete.red, .monarc-wizard.step-line span.step-complete.red {
+    background-color: var(--anr-color-step-04) !important;
+}
+.monarc-wizard.step-bullet.red:hover {
+    background-color: var(--anr-color-danger-dark) !important;
+}
+
 .monarc-wizard.step-bullet.step-finish.step-finish-incomplete {
-    background-color: var(--anr-color-neutral-step-light) !important;
+    background-color: var(--anr-color-step-04-soft) !important;
 }
 
 .monarc-wizard.step-bullet.step-finish.step-finish-complete {
     background-color: var(--anr-color-step-04) !important;
-}
-
-.monarc-wizard.step-bullet.green, .monarc-wizard.step-line span.green {
-    background-color: var(--anr-color-step-01) !important;
-}
-.monarc-wizard.step-bullet.green:hover {
-    background-color: var(--anr-color-step-hover) !important;
-}
-
-.monarc-wizard.step-bullet.blue, .monarc-wizard.step-line span.blue {
-    background-color: var(--anr-color-step-02) !important;
-}
-.monarc-wizard.step-bullet.blue:hover {
-    background-color: var(--anr-color-step-hover) !important;
-}
-
-.monarc-wizard.step-bullet.yellow, .monarc-wizard.step-line span.yellow {
-    background-color: var(--anr-color-step-03) !important;
-}
-.monarc-wizard.step-bullet.yellow:hover {
-    background-color: var(--anr-color-step-hover) !important;
-}
-
-.monarc-wizard.step-bullet.red, .monarc-wizard.step-line span.red {
-    background-color: var(--anr-color-step-04) !important;
-}
-.monarc-wizard.step-bullet.red:hover {
-    background-color: var(--anr-color-step-hover) !important;
 }
 
 md-progress-linear.green .md-bar {
@@ -1184,11 +1333,17 @@ md-progress-linear.yellow .md-bar {
 md-progress-linear.red .md-bar {
     background: var(--anr-color-step-04) !important;
 }
-md-progress-linear.green .md-container,
-md-progress-linear.blue .md-container,
-md-progress-linear.yellow .md-container,
+md-progress-linear.green .md-container {
+    background-color: var(--anr-color-step-01-soft) !important;
+}
+md-progress-linear.blue .md-container {
+    background-color: var(--anr-color-step-02-soft) !important;
+}
+md-progress-linear.yellow .md-container {
+    background-color: var(--anr-color-step-03-soft) !important;
+}
 md-progress-linear.red .md-container {
-    background-color: var(--anr-color-neutral-step-light) !important;
+    background-color: var(--anr-color-step-04-soft) !important;
 }
 
 .md-monarc-method-box {
@@ -1197,6 +1352,21 @@ md-progress-linear.red .md-container {
     border-radius: 4px;
     background: var(--anr-color-surface-overlay);
     box-shadow: 2px 3px 3px var(--anr-color-shadow-soft);
+}
+
+.md-monarc-method-box h2,
+.md-monarc-method-box .pointer,
+.md-monarc-method-box md-button,
+.md-monarc-method-box md-button md-icon,
+.md-monarc-method-box md-button .material-icons {
+    color: var(--anr-color-text-on-dark) !important;
+}
+
+.md-monarc-method-box [layout="row"] .pointer,
+.md-monarc-method-box [layout="row"] .md-button.md-icon-button,
+.md-monarc-method-box [layout="row"] .md-button.md-icon-button md-icon,
+.md-monarc-method-box [layout="row"] .md-button.md-icon-button .material-icons {
+    color: var(--anr-color-text-on-dark) !important;
 }
 
 
@@ -1287,20 +1457,27 @@ trix-toolbar span.trix-button-group--file-tools {
     /* transition: all .4s cubic-bezier(.25,.8,.25,1); */
     /* transition-duration: 200ms; */
 }
-
-md-dialog.md-transition-in {
-    opacity: 1;
-    transition: none;
-    -webkit-transform: none;
-    transform: none;
-}
-
 /*Disable transition for fading in menu items dialog.*/
 .md-open-menu-container.md-active > md-menu-content > * {
     opacity: 1;
     transition: none;
     transition-duration: 0ms;
     transition-delay: 0ms;
+}
+
+.md-open-menu-container md-menu-content,
+.md-open-menu-container md-menu-content.md-default-theme,
+.md-open-menu-container md-menu-content.md-dark-theme {
+    background-color: var(--anr-color-surface-dark) !important;
+    color: var(--anr-color-text-on-dark) !important;
+}
+
+.md-open-menu-container md-menu-content md-menu-item .md-button,
+.md-open-menu-container md-menu-content md-menu-item .md-button .md-text,
+.md-open-menu-container md-menu-content md-menu-item .md-button span,
+.md-open-menu-container md-menu-content md-menu-item .md-button md-icon,
+.md-open-menu-container md-menu-content md-menu-item .md-button .material-icons {
+    color: var(--anr-color-text-on-dark) !important;
 }
 
 .anr-menu {
@@ -1314,16 +1491,272 @@ md-dialog.md-transition-in {
     transition-duration: 0ms;
     transition-delay: 0ms;
 }
+
+md-dialog.md-transition-in {
+    opacity: 1;
+    transition: none;
+    -webkit-transform: none;
+    transform: none;
+}
+
 md-dialog._md-transition-in {
     transition: none;
     transition-duration: 0ms;
     transition-delay: 0ms;
 }
 
+md-dialog md-dialog-actions {
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 -2px 6px -6px var(--anr-color-shadow-soft);
+    border-top: 1px solid var(--anr-color-border-subtle);
+}
+
+md-dialog.md-light-theme.md-content-overflow md-dialog-actions,
+md-dialog.md-content-overflow md-dialog-actions {
+    border-top-color: var(--anr-color-border-subtle) !important;
+}
+
+md-dialog .md-dialog-content .md-block[layout="column"] > div[layout="row"] > md-icon:not(.md-primary):not(.md-warn):not(.md-accent):not(.anr-importance):not(.anr-icon-muted):not(.anr-icon-warning),
+md-dialog .md-dialog-content .md-block[layout="column"] > div[layout="row"]:has(md-autocomplete.md-focused) > md-icon:not(.md-primary):not(.md-warn):not(.md-accent):not(.anr-importance):not(.anr-icon-muted):not(.anr-icon-warning),
+md-dialog .md-dialog-content .md-block[layout="column"] > div[layout="row"]:has(md-autocomplete:focus-within) > md-icon:not(.md-primary):not(.md-warn):not(.md-accent):not(.anr-importance):not(.anr-icon-muted):not(.anr-icon-warning),
+md-dialog .md-dialog-content .md-block[layout="column"] > div[layout="row"]:has(md-autocomplete.md-input-invalid) > md-icon:not(.md-primary):not(.md-warn):not(.md-accent):not(.anr-importance):not(.anr-icon-muted):not(.anr-icon-warning),
+md-dialog .md-dialog-content .md-block[layout="column"] > div[layout="row"]:has(md-autocomplete.ng-invalid.ng-dirty) > md-icon:not(.md-primary):not(.md-warn):not(.md-accent):not(.anr-importance):not(.anr-icon-muted):not(.anr-icon-warning),
+md-dialog .md-dialog-content .md-block[layout="column"] > div[layout="row"]:has(md-autocomplete.ng-invalid.ng-touched) > md-icon:not(.md-primary):not(.md-warn):not(.md-accent):not(.anr-importance):not(.anr-icon-muted):not(.anr-icon-warning) {
+    color: var(--anr-color-text-primary) !important;
+}
+
+md-dialog .md-dialog-content .md-block[layout="column"] > div[layout="row"]:has(md-autocomplete[disabled]) > md-icon:not(.md-primary):not(.md-warn):not(.md-accent):not(.anr-importance):not(.anr-icon-muted):not(.anr-icon-warning),
+md-dialog .md-dialog-content .md-block[layout="column"] > div[layout="row"]:has(md-autocomplete.ng-disabled) > md-icon:not(.md-primary):not(.md-warn):not(.md-accent):not(.anr-importance):not(.anr-icon-muted):not(.anr-icon-warning) {
+    color: var(--anr-color-text-disabled) !important;
+}
+
+
+
 md-input-container label{
     transition: none!important;
     transition-duration: 0ms!important;
     transition-delay: 0ms!important;
+}
+
+md-input-container label,
+md-input-container .md-placeholder,
+md-input-container.md-input-focused label,
+md-input-container.md-input-invalid label,
+md-input-container.md-input-invalid.md-input-focused label,
+md-input-container.md-input-focused label:not(.md-no-float):not(.md-container-ignore),
+md-input-container.md-input-invalid label:not(.md-no-float):not(.md-container-ignore),
+md-input-container.md-input-invalid.md-input-focused label:not(.md-no-float):not(.md-container-ignore) {
+    color: var(--anr-color-text-label-default) !important;
+}
+
+md-input-container label.md-required::after,
+md-input-container.md-required label:not(.md-no-float):not(.md-container-ignore)::after,
+md-input-container .md-placeholder.md-required::after,
+md-input-container.md-input-invalid label.md-required::after,
+md-input-container.md-input-invalid .md-placeholder.md-required::after {
+    color: var(--anr-color-danger-error) !important;
+}
+
+md-input-container .md-input-messages-animation,
+md-input-container .md-input-message-animation,
+md-input-container .md-input-message-animation.ng-enter,
+md-input-container .md-input-message-animation.ng-active,
+md-input-container .md-input-message-animation.ng-enter-active,
+md-input-container [ng-message],
+md-input-container .ng-message,
+md-input-container [ng-messages] {
+    color: var(--anr-color-danger-error) !important;
+}
+
+md-input-container.md-input-disabled label,
+md-input-container[disabled] label,
+md-input-container:has(.md-input[disabled]) label,
+md-input-container:has(textarea[disabled]) label,
+md-input-container:has(md-select[disabled]) label {
+    color: var(--anr-color-text-disabled) !important;
+}
+
+md-input-container md-icon:not(.md-primary):not(.md-warn):not(.md-accent):not(.anr-importance):not(.anr-icon-muted):not(.anr-icon-warning),
+md-input-container .material-icons:not(.md-primary):not(.md-warn):not(.md-accent):not(.anr-importance):not(.anr-icon-muted):not(.anr-icon-warning),
+md-input-container.md-input-focused md-icon:not(.md-primary):not(.md-warn):not(.md-accent):not(.anr-importance):not(.anr-icon-muted):not(.anr-icon-warning),
+md-input-container.md-input-focused .material-icons:not(.md-primary):not(.md-warn):not(.md-accent):not(.anr-importance):not(.anr-icon-muted):not(.anr-icon-warning),
+md-input-container.md-input-invalid md-icon:not(.md-primary):not(.md-warn):not(.md-accent):not(.anr-importance):not(.anr-icon-muted):not(.anr-icon-warning),
+md-input-container.md-input-invalid .material-icons:not(.md-primary):not(.md-warn):not(.md-accent):not(.anr-importance):not(.anr-icon-muted):not(.anr-icon-warning),
+md-input-container:has(input:focus) md-icon:not(.md-primary):not(.md-warn):not(.md-accent):not(.anr-importance):not(.anr-icon-muted):not(.anr-icon-warning),
+md-input-container:has(textarea:focus) md-icon:not(.md-primary):not(.md-warn):not(.md-accent):not(.anr-importance):not(.anr-icon-muted):not(.anr-icon-warning),
+md-input-container:has(md-select:focus) md-icon:not(.md-primary):not(.md-warn):not(.md-accent):not(.anr-importance):not(.anr-icon-muted):not(.anr-icon-warning),
+md-input-container:has(md-select-menu[aria-expanded="true"]) md-icon:not(.md-primary):not(.md-warn):not(.md-accent):not(.anr-importance):not(.anr-icon-muted):not(.anr-icon-warning),
+md-input-container:has(.md-input.ng-invalid.ng-dirty) md-icon:not(.md-primary):not(.md-warn):not(.md-accent):not(.anr-importance):not(.anr-icon-muted):not(.anr-icon-warning),
+md-input-container:has(.md-input.ng-invalid.ng-touched) md-icon:not(.md-primary):not(.md-warn):not(.md-accent):not(.anr-importance):not(.anr-icon-muted):not(.anr-icon-warning),
+md-input-container:has(.md-input.ng-invalid.ng-not-empty) md-icon:not(.md-primary):not(.md-warn):not(.md-accent):not(.anr-importance):not(.anr-icon-muted):not(.anr-icon-warning) {
+    color: var(--anr-color-text-primary) !important;
+}
+
+md-input-container.md-input-disabled md-icon:not(.md-primary):not(.md-warn):not(.md-accent):not(.anr-importance):not(.anr-icon-muted):not(.anr-icon-warning),
+md-input-container.md-input-disabled .material-icons:not(.md-primary):not(.md-warn):not(.md-accent):not(.anr-importance):not(.anr-icon-muted):not(.anr-icon-warning),
+md-input-container[disabled] md-icon:not(.md-primary):not(.md-warn):not(.md-accent):not(.anr-importance):not(.anr-icon-muted):not(.anr-icon-warning),
+md-input-container:has(.md-input[disabled]) md-icon:not(.md-primary):not(.md-warn):not(.md-accent):not(.anr-importance):not(.anr-icon-muted):not(.anr-icon-warning),
+md-input-container:has(textarea[disabled]) md-icon:not(.md-primary):not(.md-warn):not(.md-accent):not(.anr-importance):not(.anr-icon-muted):not(.anr-icon-warning),
+md-input-container:has(md-select[disabled]) md-icon:not(.md-primary):not(.md-warn):not(.md-accent):not(.anr-importance):not(.anr-icon-muted):not(.anr-icon-warning) {
+    color: var(--anr-color-text-disabled) !important;
+}
+
+
+md-input-container.md-auto-horizontal-margin {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+md-input-container md-select,
+md-input-container > md-select {
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+}
+
+md-input-container md-select .md-select-value.md-select-placeholder span:first-child,
+md-input-container > md-select .md-select-value.md-select-placeholder span:first-child,
+md-input-container.md-input-focused md-select .md-select-value.md-select-placeholder span:first-child,
+md-input-container.md-input-focused > md-select .md-select-value.md-select-placeholder span:first-child,
+md-input-container.md-input-invalid md-select .md-select-value.md-select-placeholder span:first-child,
+md-input-container.md-input-invalid > md-select .md-select-value.md-select-placeholder span:first-child,
+md-input-container.md-input-invalid.md-input-focused md-select .md-select-value.md-select-placeholder span:first-child,
+md-input-container.md-input-invalid.md-input-focused > md-select .md-select-value.md-select-placeholder span:first-child {
+    color: var(--anr-color-text-label-default) !important;
+}
+
+md-input-container.md-input-disabled md-select .md-select-value.md-select-placeholder span:first-child,
+md-input-container.md-input-disabled > md-select .md-select-value.md-select-placeholder span:first-child,
+md-input-container:has(md-select[disabled]) .md-select-value.md-select-placeholder span:first-child {
+    color: var(--anr-color-text-disabled) !important;
+}
+
+md-input-container .md-input,
+md-input-container .md-input[readonly],
+md-input-container md-select .md-select-value,
+md-input-container > md-select .md-select-value {
+    border-bottom-style: solid !important;
+    border-bottom-width: 1px !important;
+    border-bottom-color: var(--anr-color-border-input-default) !important;
+}
+
+md-input-container.md-input-focused .md-input,
+md-input-container:has(.md-input:focus) .md-input,
+md-input-container.md-input-focused md-select .md-select-value,
+md-input-container:has(md-select:focus) .md-select-value,
+md-input-container:has(md-select-menu[aria-expanded="true"]) .md-select-value {
+    border-bottom-color: var(--anr-color-brand-primary) !important;
+    border-bottom-width: 2px !important;
+}
+
+md-input-container.md-input-invalid .md-input,
+md-input-container .md-input.ng-invalid.ng-dirty,
+md-input-container .md-input.ng-invalid.ng-touched,
+md-input-container .md-input.ng-invalid.ng-not-empty,
+md-input-container.md-input-invalid md-select .md-select-value,
+md-input-container.md-input-invalid md-select .md-select-value::after,
+md-input-container.md-input-invalid md-select .md-select-value > span:first-child::after,
+md-input-container:has(md-select.ng-invalid.ng-dirty) .md-select-value,
+md-input-container:has(md-select.ng-invalid.ng-dirty) .md-select-value::after,
+md-input-container:has(md-select.ng-invalid.ng-dirty) .md-select-value > span:first-child::after,
+md-input-container:has(md-select.ng-invalid.ng-touched) .md-select-value,
+md-input-container:has(md-select.ng-invalid.ng-touched) .md-select-value::after,
+md-input-container:has(md-select.ng-invalid.ng-touched) .md-select-value > span:first-child::after,
+md-input-container:has(md-select.ng-invalid.ng-not-empty) .md-select-value,
+md-input-container:has(md-select.ng-invalid.ng-not-empty) .md-select-value::after,
+md-input-container:has(md-select.ng-invalid.ng-not-empty) .md-select-value > span:first-child::after,
+md-input-container.md-input-invalid md-autocomplete md-autocomplete-wrap,
+md-input-container:has(md-autocomplete.ng-invalid.ng-dirty) md-autocomplete-wrap,
+md-input-container:has(md-autocomplete.ng-invalid.ng-touched) md-autocomplete-wrap,
+md-input-container:has(md-autocomplete .md-input.ng-invalid.ng-dirty) md-autocomplete-wrap,
+md-input-container:has(md-autocomplete .md-input.ng-invalid.ng-touched) md-autocomplete-wrap,
+form.ng-submitted md-input-container .md-input.ng-invalid,
+form.ng-submitted md-input-container md-select.ng-invalid .md-select-value,
+form.ng-submitted md-input-container md-select.ng-invalid .md-select-value::after,
+form.ng-submitted md-input-container md-select.ng-invalid .md-select-value > span:first-child::after,
+form.ng-submitted md-input-container:has(md-select.ng-invalid) .md-select-value,
+form.ng-submitted md-input-container:has(md-select.ng-invalid) .md-select-value::after,
+form.ng-submitted md-input-container:has(md-select.ng-invalid) .md-select-value > span:first-child::after,
+form.ng-submitted md-input-container:has(md-autocomplete.ng-invalid) md-autocomplete-wrap,
+form.ng-submitted md-input-container:has(md-autocomplete .md-input.ng-invalid) md-autocomplete-wrap {
+    border-bottom-color: var(--anr-color-danger-error) !important;
+    border-bottom-width: 2px !important;
+}
+
+.md-default-theme md-input-container label:not(.md-container-ignore).md-required:after,
+.md-default-theme md-input-container.md-required label:not(.md-no-float):not(.md-container-ignore)::after,
+.md-default-theme md-input-container .md-placeholder.md-required::after,
+.md-light-theme md-input-container label:not(.md-container-ignore).md-required:after,
+.md-light-theme md-input-container.md-required label:not(.md-no-float):not(.md-container-ignore)::after,
+.md-light-theme md-input-container .md-placeholder.md-required::after,
+md-input-container[class*="-theme"] label.md-required:after,
+md-input-container[class*="-theme"] label.md-required::after,
+md-input-container[class*="-theme"]:not(.md-input-focused):not(.md-input-invalid) label.md-required:after,
+md-input-container[class*="-theme"]:not(.md-input-focused):not(.md-input-invalid) label.md-required::after,
+md-input-container[class*="-theme"] .md-placeholder.md-required:after,
+md-input-container[class*="-theme"] .md-placeholder.md-required::after,
+md-input-container md-select[class*="-theme"] .md-select-value span:first-child:after,
+md-input-container:not(.md-input-focused):not(.md-input-invalid) md-select[class*="-theme"] .md-select-value span:first-child:after,
+md-select[class*="-theme"][required].ng-empty.ng-invalid:not(.md-no-asterisk) .md-select-value span:first-child:after,
+md-select[class*="-theme"].ng-required.ng-empty.ng-invalid:not(.md-no-asterisk) .md-select-value span:first-child:after,
+.md-default-theme md-select[required].ng-empty.ng-invalid:not(.md-no-asterisk) .md-select-value span:first-child:after,
+.md-default-theme md-select.ng-required.ng-empty.ng-invalid:not(.md-no-asterisk) .md-select-value span:first-child:after,
+.md-light-theme md-select[required].ng-empty.ng-invalid:not(.md-no-asterisk) .md-select-value span:first-child:after,
+.md-light-theme md-select.ng-required.ng-empty.ng-invalid:not(.md-no-asterisk) .md-select-value span:first-child:after {
+    color: var(--anr-color-danger-error) !important;
+}
+
+.md-default-theme md-input-container .md-input-messages-animation,
+.md-default-theme md-input-container .md-input-message-animation,
+.md-default-theme md-input-container .md-input-message-animation.ng-enter,
+.md-default-theme md-input-container .md-input-message-animation.ng-enter-active,
+.md-default-theme md-input-container [ng-message],
+.md-default-theme md-input-container .ng-message,
+.md-default-theme md-input-container [ng-messages],
+.md-light-theme md-input-container .md-input-messages-animation,
+.md-light-theme md-input-container .md-input-message-animation,
+.md-light-theme md-input-container .md-input-message-animation.ng-enter,
+.md-light-theme md-input-container .md-input-message-animation.ng-enter-active,
+.md-light-theme md-input-container [ng-message],
+.md-light-theme md-input-container .ng-message,
+.md-light-theme md-input-container [ng-messages],
+md-input-container[class*="-theme"] .md-input-message-animation,
+md-input-container[class*="-theme"] .md-input-messages-animation,
+md-input-container[class*="-theme"] .md-input-message-animation.ng-enter,
+md-input-container[class*="-theme"] .md-input-message-animation.ng-enter-active,
+md-input-container[class*="-theme"] .md-input-message-animation .md-char-counter,
+md-input-container[class*="-theme"].md-input-invalid .md-input-message-animation,
+md-input-container[class*="-theme"].md-input-invalid .md-input-messages-animation,
+md-input-container[class*="-theme"].md-input-invalid .md-char-counter {
+    color: var(--anr-color-danger-error) !important;
+}
+
+.md-default-theme md-input-container.md-input-invalid md-select .md-select-value,
+.md-default-theme md-input-container.md-input-invalid md-select .md-select-value::after,
+.md-default-theme md-input-container.md-input-invalid md-select .md-select-value > span:first-child::after,
+.md-default-theme form.ng-submitted md-input-container md-select.ng-invalid .md-select-value,
+.md-default-theme form.ng-submitted md-input-container md-select.ng-invalid .md-select-value::after,
+.md-default-theme form.ng-submitted md-input-container md-select.ng-invalid .md-select-value > span:first-child::after,
+.md-light-theme md-input-container.md-input-invalid md-select .md-select-value,
+.md-light-theme md-input-container.md-input-invalid md-select .md-select-value::after,
+.md-light-theme md-input-container.md-input-invalid md-select .md-select-value > span:first-child::after,
+.md-light-theme form.ng-submitted md-input-container md-select.ng-invalid .md-select-value,
+.md-light-theme form.ng-submitted md-input-container md-select.ng-invalid .md-select-value::after,
+.md-light-theme form.ng-submitted md-input-container md-select.ng-invalid .md-select-value > span:first-child::after,
+md-input-container.md-input-invalid md-select[class*="-theme"] .md-select-value,
+md-input-container.md-input-invalid md-select[class*="-theme"] .md-select-value::after,
+md-input-container.md-input-invalid md-select[class*="-theme"] .md-select-value > span:first-child::after,
+md-select[class*="-theme"].ng-invalid.ng-touched .md-select-value,
+md-select[class*="-theme"].ng-invalid.ng-dirty .md-select-value,
+form.ng-submitted md-select[class*="-theme"].ng-invalid .md-select-value {
+    border-bottom-color: var(--anr-color-danger-error) !important;
+}
+
+/* Autofill fallback */
+md-input-container:has(input:-webkit-autofill) label:not(.md-no-float):not(.md-container-ignore) {
+    transform: translate3d(0,6px,0) scale(.75);
+    transition: transform .4s cubic-bezier(.25,.8,.25,1), width .4s cubic-bezier(.25,.8,.25,1);
+    padding-left: 3px;
 }
 
 
@@ -1641,4 +2074,314 @@ md-select-menu md-content
 .anr-list-details {
     display: block;
     font-size: 10px;
+}
+
+
+.anr-file-schema-card md-card-content,
+.anr-file-schema-card md-card-actions{
+    margin: unset;
+    background: var(--anr-color-button-disabled);
+}
+
+.anr-file-schema-card md-card-content {
+    padding: 16px;
+    border: 1px solid var(--anr-color-border-input-default);
+}
+
+.anr-file-schema-card md-card-actions{
+    padding: 8px 16px;
+    border: 1px solid var(--anr-color-border-input-default);
+    border-top: none;
+}
+
+
+.anr-kb-mgmt md-table-container md-checkbox .md-icon {
+    border-color: var(--anr-color-border-default);
+    border-width: 2px;
+    border-radius: 2px;
+}
+
+.anr-kb-mgmt md-table-container md-checkbox.md-checked .md-icon,
+.anr-kb-mgmt md-table-container md-checkbox.md-indeterminate .md-icon {
+    background-color: var(--anr-color-brand-primary);
+    border-color: var(--anr-color-brand-primary);
+}
+
+.anr-kb-mgmt md-table-container md-checkbox.md-checked .md-icon:after {
+    border-color: var(--anr-color-text-on-dark);
+}
+
+.anr-kb-mgmt md-table-container md-checkbox.md-indeterminate .md-icon:after {
+    background-color: var(--anr-color-text-on-dark);
+}
+
+.anr-cia-checkbox-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+md-checkbox {
+    display: inline-flex !important;
+    align-items: center !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+md-checkbox .md-container {
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+md-checkbox .md-label {
+    display: inline-flex !important;
+    align-items: center !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    line-height: 18px !important;
+}
+
+md-input-container md-checkbox .md-container,
+md-dialog md-checkbox .md-container {
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+}
+
+md-input-container md-checkbox .md-label,
+md-dialog md-checkbox .md-label {
+    display: inline-flex !important;
+    align-items: center !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    line-height: 18px !important;
+}
+
+.md-checkbox-enabled.md-default-theme:not(.md-checked):not(.md-indeterminate) .md-icon,
+.md-checkbox-enabled:not(.md-checked):not(.md-indeterminate) .md-icon{
+    border-color: var(--anr-color-border-default);
+}
+
+
+div[ng-controller="AnrObjectCtrl"] md-icon.anr-icon-warning {
+    color: var(--anr-color-brand-primary-dark) !important;
+}
+
+div[ng-controller="AnrObjectCtrl"] div[ng-if="object"]:not(.active-obj) h2 {
+    color: var(--anr-color-brand-primary-dark) !important;
+}
+
+div[ng-controller="AnrObjectCtrl"] div[ng-if="object"]:not(.active-obj) > span {
+    color: var(--anr-color-text-secondary) !important;
+    font-weight: 400;
+}
+
+.md-html-table td, .md-html-table th {
+    border: 1px solid var(--anr-color-border-default);
+    padding: 8px;
+}
+
+.md-html-table td[disabled] {
+    background: var(--anr-color-surface-disabled);
+}
+
+.md-html-table tbody tr {
+    transition: 0.25s background-color;
+}
+.md-html-table tbody tr:nth-child(even) {
+    background-color: var(--anr-color-surface-row-alt);
+}
+.md-html-table tbody tr:hover {
+    background-color: var(--anr-color-surface-row-hover);
+}
+
+a {
+    color: var(--anr-color-link-accent);
+}
+
+md-card a {
+    color: var(--anr-color-text-primary);
+}
+
+md-card md-card-title {
+    color: var(--anr-color-brand-primary-light);
+}
+
+md-card .md-toolbar-tools {
+    color: var(--anr-color-text-primary-alt);
+}
+
+md-toolbar md-icon.material-icons {
+    color: var(--anr-color-text-on-dark);
+}
+
+md-toolbar.md-table-toolbar.alternate.selected-toolbar {
+  background-color: var(--anr-color-surface-kb-selected-toolbar);
+}
+
+md-toolbar.md-table-toolbar.alternate.selected-toolbar .md-toolbar-tools {
+  color: var(--anr-color-text-primary);
+  background-color: var(--anr-color-surface-kb-selected-toolbar);
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  border-bottom: 1px solid var(--anr-color-border-input-default);
+}
+
+md-toolbar.md-table-toolbar.alternate.selected-toolbar .md-toolbar-tools .md-button.md-icon-button.md-warn,
+md-toolbar.md-table-toolbar.alternate.selected-toolbar .md-toolbar-tools .md-button.md-icon-button.md-warn md-icon {
+    color: var(--anr-color-action-delete) !important;
+}
+
+.md-toolbar-tools {
+    color: var(--anr-color-text-on-dark);
+}
+
+.md-button.md-warn,
+.md-button.md-warn md-icon,
+.md-button.md-warn .material-icons,
+a[ng-click*="delete"] md-icon,
+a[ng-click*="remove"] md-icon,
+a[ng-click*="cancel"] md-icon {
+    color: var(--anr-color-action-delete) !important;
+}
+
+.md-button.md-raised.md-warn,
+.md-button.md-fab.md-warn {
+    background-color: var(--anr-color-action-delete) !important;
+    color: var(--anr-color-text-on-dark) !important;
+}
+
+body .md-button.md-raised.md-warn:not([disabled]):hover,
+body .md-button.md-fab.md-warn:not([disabled]):hover {
+    background-color: var(--anr-color-action-emphasis) !important;
+}
+
+.md-button.md-raised.md-warn md-icon,
+.md-button.md-fab.md-warn md-icon {
+    color: var(--anr-color-text-on-dark) !important;
+}
+
+md-icon.md-warn,
+.md-button[ng-click*="export"] md-icon,
+.md-button[ng-click*="download"] md-icon,
+a[ng-click*="export"] md-icon,
+a[ng-click*="download"] md-icon,
+.md-button.md-warn[ng-click*="export"],
+.md-button.md-warn[ng-click*="download"],
+.md-button.md-warn[ng-click*="export"] md-icon,
+.md-button.md-warn[ng-click*="download"] md-icon {
+    color: var(--anr-color-action-export) !important;
+}
+
+.md-button[disabled].md-warn,
+.md-button.md-disabled.md-warn,
+.md-button[disabled].md-warn .material-icons,
+.md-button.md-disabled.md-warn .material-icons,
+.md-button[disabled].md-warn md-icon,
+.md-button.md-disabled.md-warn md-icon,
+.md-button[disabled] md-icon.md-warn,
+.md-button.md-disabled md-icon.md-warn,
+.md-button[disabled][ng-click*="export"] md-icon,
+.md-button.md-disabled[ng-click*="export"] md-icon,
+.md-button[disabled][ng-click*="download"] md-icon,
+.md-button.md-disabled[ng-click*="download"] md-icon {
+    color: var(--anr-color-text-disabled) !important;
+}
+
+.md-button.md-raised.md-warn[disabled],
+.md-button.md-fab.md-warn[disabled],
+.md-button.md-raised.md-warn.md-disabled,
+.md-button.md-fab.md-warn.md-disabled {
+    background-color: var(--anr-color-surface-disabled) !important;
+    color: var(--anr-color-text-disabled) !important;
+    opacity: 1;
+}
+
+.md-button.md-raised.md-warn[disabled] md-icon,
+.md-button.md-fab.md-warn[disabled] md-icon,
+.md-button.md-raised.md-warn.md-disabled md-icon,
+.md-button.md-fab.md-warn.md-disabled md-icon {
+    color: var(--anr-color-text-disabled) !important;
+}
+
+.md-white-card {
+    background: var(--anr-color-surface-white);
+    color: var(--anr-color-text-secondary);
+}
+
+.md-main-content {
+    background-color: var(--anr-color-surface-white); 
+}
+
+.md-main-content > [ui-view="main"].ng-scope md-card,
+.md-dialog-content md-card{
+    box-shadow: unset;
+}
+
+.md-select-menu-container md-option:not([selected]):not([aria-selected="true"]):focus,
+.md-select-menu-container md-option:not([selected]):not([aria-selected="true"]).md-focused,
+.md-select-menu-container md-option:not([selected]):not([aria-selected="true"]).md-active {
+    background: transparent !important;
+}
+
+.md-select-menu-container md-option:not([selected]):not([aria-selected="true"]):hover {
+    background: var(--anr-color-select-option-hover-bg) !important;
+}
+
+.md-select-menu-container md-option[selected],
+.md-select-menu-container md-option[aria-selected="true"],
+.md-select-menu-container md-option.md-selected,
+.md-select-menu-container md-option[selected]:focus,
+.md-select-menu-container md-option[aria-selected="true"]:focus,
+.md-select-menu-container md-option.md-selected:focus,
+.md-select-menu-container md-option[selected].md-focused,
+.md-select-menu-container md-option[aria-selected="true"].md-focused,
+.md-select-menu-container md-option.md-selected.md-focused {
+    background: var(--anr-color-select-option-selected-bg) !important;
+    color: var(--anr-color-action-emphasis) !important;
+}
+
+.md-select-menu-container md-option.md-selected,
+.md-select-menu-container md-option[selected],
+.md-select-menu-container md-option[aria-selected="true"],
+.md-select-menu-container md-option.md-selected .md-text,
+.md-select-menu-container md-option[selected] .md-text,
+.md-select-menu-container md-option[aria-selected="true"] .md-text,
+.md-select-menu-container md-option.md-selected .md-icon,
+.md-select-menu-container md-option[selected] .md-icon,
+.md-select-menu-container md-option[aria-selected="true"] .md-icon {
+    color: var(--anr-color-action-emphasis) !important;
+}
+
+.md-caption {
+    font-size: 11px;
+    color: var(--anr-color-text-caption);
+    margin-top: 5px;
+}
+
+md-chips.md-default-theme md-chip,
+md-chips.md-light-theme md-chip,
+md-chips md-chip {
+    background: var(--anr-color-chip-background);
+    color: var(--anr-color-chip-text);
+}
+
+md-chips md-chip .md-chip-remove-container,
+md-chips md-chip .md-chip-remove-container button,
+md-chips md-chip .md-chip-remove-container md-icon {
+    height: 26px;
+    line-height: 26px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+}
+
+md-list-item p {
+    font-weight: normal; }
+
+md-list-item.active, md-list-item.active md-icon {
+    color: var(--anr-color-link-accent);
 }
