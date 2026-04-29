@@ -358,24 +358,7 @@ table.md-table tbody.md-body>tr.md-row:hover {
 }
 
 #toast-container .toast.toast-success,
-#toast-container .toast.toast-warning {
-    color: var(--anr-color-text-dark) !important;
-}
-
-#toast-container .toast.toast-success .toast-title,
-#toast-container .toast.toast-success .toast-message,
-#toast-container .toast.toast-success .toast-message a,
-#toast-container .toast.toast-success .toast-message label,
-#toast-container .toast.toast-success .toast-close-button,
-#toast-container .toast.toast-warning .toast-title,
-#toast-container .toast.toast-warning .toast-message,
-#toast-container .toast.toast-warning .toast-message a,
-#toast-container .toast.toast-warning .toast-message label,
-#toast-container .toast.toast-warning .toast-close-button {
-    color: var(--anr-color-text-dark) !important;
-    text-shadow: none !important;
-}
-
+#toast-container .toast.toast-warning,
 #toast-container .toast.toast-error,
 #toast-container .toast.toast-info {
     color: var(--anr-color-text-on-dark) !important;
@@ -2214,7 +2197,7 @@ md-card .md-toolbar-tools {
     color: var(--anr-color-text-primary-alt);
 }
 
-md-toolbar md-icon.material-icons {
+md-toolbar:not(.md-default) md-icon.material-icons {
     color: var(--anr-color-text-on-dark);
 }
 
@@ -2235,7 +2218,7 @@ md-toolbar.md-table-toolbar.alternate.selected-toolbar .md-toolbar-tools .md-but
     color: var(--anr-color-action-delete) !important;
 }
 
-.md-toolbar-tools {
+md-toolbar:not(.md-default) .md-toolbar-tools {
     color: var(--anr-color-text-on-dark);
 }
 
