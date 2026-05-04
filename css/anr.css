@@ -187,7 +187,7 @@ table.md-table tbody.md-body>tr.md-row:nth-child(even) {
     background-color: var(--anr-color-surface-row-alt);
 }
 table.md-table tbody.md-body>tr.md-row:hover {
-    background-color: var(--anr-color-surface-light);
+    background-color: var(--anr-color-surface-row-hover);
 }
 
 .tooltip-recommendation, .tooltip-recommendation .md-content {
