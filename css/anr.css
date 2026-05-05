@@ -1463,6 +1463,20 @@ trix-toolbar span.trix-button-group--file-tools {
     color: var(--anr-color-text-on-dark) !important;
 }
 
+/* Disabled menu options: text and icon use disabled token. */
+.md-open-menu-container md-menu-content md-menu-item .md-button[disabled],
+.md-open-menu-container md-menu-content md-menu-item .md-button[disabled] .md-text,
+.md-open-menu-container md-menu-content md-menu-item .md-button[disabled] span,
+.md-open-menu-container md-menu-content md-menu-item .md-button[disabled] md-icon,
+.md-open-menu-container md-menu-content md-menu-item .md-button[disabled] .material-icons,
+.md-open-menu-container md-menu-content md-menu-item .md-button.md-disabled,
+.md-open-menu-container md-menu-content md-menu-item .md-button.md-disabled .md-text,
+.md-open-menu-container md-menu-content md-menu-item .md-button.md-disabled span,
+.md-open-menu-container md-menu-content md-menu-item .md-button.md-disabled md-icon,
+.md-open-menu-container md-menu-content md-menu-item .md-button.md-disabled .material-icons {
+    color: var(--anr-color-text-disabled) !important;
+}
+
 .anr-menu {
     min-height: 340px;
     max-height: none;
