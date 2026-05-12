@@ -187,7 +187,7 @@ table.md-table tbody.md-body>tr.md-row:nth-child(even) {
     background-color: var(--anr-color-surface-row-alt);
 }
 table.md-table tbody.md-body>tr.md-row:hover {
-    background-color: var(--anr-color-surface-light);
+    background-color: var(--anr-color-surface-row-hover);
 }
 
 .tooltip-recommendation, .tooltip-recommendation .md-content {
@@ -1461,6 +1461,20 @@ trix-toolbar span.trix-button-group--file-tools {
 .md-open-menu-container md-menu-content md-menu-item .md-button md-icon,
 .md-open-menu-container md-menu-content md-menu-item .md-button .material-icons {
     color: var(--anr-color-text-on-dark) !important;
+}
+
+/* Disabled menu options: text and icon use disabled token. */
+.md-open-menu-container md-menu-content md-menu-item .md-button[disabled],
+.md-open-menu-container md-menu-content md-menu-item .md-button[disabled] .md-text,
+.md-open-menu-container md-menu-content md-menu-item .md-button[disabled] span,
+.md-open-menu-container md-menu-content md-menu-item .md-button[disabled] md-icon,
+.md-open-menu-container md-menu-content md-menu-item .md-button[disabled] .material-icons,
+.md-open-menu-container md-menu-content md-menu-item .md-button.md-disabled,
+.md-open-menu-container md-menu-content md-menu-item .md-button.md-disabled .md-text,
+.md-open-menu-container md-menu-content md-menu-item .md-button.md-disabled span,
+.md-open-menu-container md-menu-content md-menu-item .md-button.md-disabled md-icon,
+.md-open-menu-container md-menu-content md-menu-item .md-button.md-disabled .material-icons {
+    color: var(--anr-color-text-disabled) !important;
 }
 
 .anr-menu {

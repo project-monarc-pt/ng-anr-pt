@@ -86,9 +86,9 @@
     --anr-color-action-export: #308AA1;
 
     /* Risks */
-    --anr-risk-green: #D6F107;
-    --anr-risk-orage: #FFBC1C;
-    --anr-risk-red: #FD661F;
+    --anr-risk-green: #2FA36B;
+    --anr-risk-orage: #F1B800;
+    --anr-risk-red: #C0392B;
 
     /* Wizard / neutral */
     --anr-color-neutral-step: #939598;
@@ -98,11 +98,10 @@
     --anr-color-step-02: #2C8CA3;
     --anr-color-step-03: #F1B800;
     --anr-color-step-04: #C0392B;
-    --anr-color-step-01-soft: var(--anr-color-success-soft);
-    --anr-color-step-02-soft: var(--anr-color-info-soft);
-    --anr-color-step-03-soft: var(--anr-color-warning-soft);
-    --anr-color-step-04-soft: var(--anr-color-danger-soft);
-    
+    --anr-color-step-01-soft: #B8E0CD;
+    --anr-color-step-02-soft: #B8DDE6;
+    --anr-color-step-03-soft: #FAE5A6;
+    --anr-color-step-04-soft: #E6B8B4;
 
     /* Shadows */
     --anr-color-shadow-soft: rgba(0,0,0,0.25);
