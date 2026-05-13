@@ -1,4 +1,4 @@
-<md-dialog md-theme="light" class="dialog-width">
+<md-dialog md-theme="light" class="dialog-width update-controls-dialog">
     <form name="updateMeasuresAmvForm">
         <md-toolbar>
             <div class="md-toolbar-tools">
@@ -12,16 +12,16 @@
         <md-dialog-content>
             <div class="md-dialog-content" layout="column">
                 <div flex class="md-padding-right">
-                <md-subheader class="md-subheader">{{ 'Referential to update' | translate }}</md-subheader>
-                <md-select ng-model="toReferential" placeholder="{{ 'Select a referential' | translate }}" required>
+                <md-subheader class="md-subheader kb-dialog-section-subheader">{{ 'Referential to update' | translate }}</md-subheader>
+                <md-select class="update-controls-select" ng-model="toReferential" placeholder="{{ 'Select a referential' | translate }}" required>
                   <md-option ng-repeat="ref in referentials" ng-value="ref.uuid" ng-if="ref.uuid != fromReferential">
                     {{ _langField(ref,'label') }}
                   </md-option>
                 </md-select>
                 </div>
                 <div flex class="md-padding-right">
-                <md-subheader class="md-subheader">{{ 'From referential matched' | translate }}</md-subheader>
-                <md-select ng-model="fromReferential" placeholder="{{ 'Select a referential' | translate }}" required>
+                <md-subheader class="md-subheader kb-dialog-section-subheader">{{ 'From referential matched' | translate }}</md-subheader>
+                <md-select class="update-controls-select" ng-model="fromReferential" placeholder="{{ 'Select a referential' | translate }}" required>
                   <md-option ng-repeat="ref in referentials" ng-value="ref.uuid" ng-if="ref.uuid != toReferential">
                     {{ _langField(ref,'label') }}
                   </md-option>

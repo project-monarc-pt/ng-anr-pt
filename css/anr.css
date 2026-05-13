@@ -306,7 +306,7 @@ table.md-table tbody.md-body>tr.md-row:hover {
 #toast-container .toast,
 #toast-container .toast:hover {
     opacity: 1 !important;
-    box-shadow: 0 1px 4px rgba(35, 31, 32, 0.12) !important;
+    box-shadow: var(--anr-color-shadow-toast) !important;
 }
 
 #toast-container .toast.toast-success,
@@ -541,6 +541,10 @@ md-input-container .hint.ng-leave, md-input-container .hint.ng-enter.ng-enter-ac
     list-style:none;
 }
 
+.asset-import-dialog md-card.md-card-info {
+    margin: 8px 0;
+}
+
 .md-card-info {
     background-color: var(--anr-color-surface-info-banner) !important;
     color: var(--anr-color-brand-primary-dark) !important;
@@ -735,8 +739,8 @@ md-input-container .hint.ng-leave, md-input-container .hint.ng-enter.ng-enter-ac
 }
 
 .md-upload-dropbox.dragover {
-    background: var(--anr-color-neutral-step-alt);
-    color: var(--anr-color-text-on-dark);
+    color: var(--anr-color-brand-primary);
+    border-color: var(--anr-color-brand-primary) !important;
 }
 
 .md-upload-dropbox-dark {
@@ -2381,4 +2385,16 @@ md-list-item p {
 
 md-list-item.active, md-list-item.active md-icon {
     color: var(--anr-color-link-accent);
+}
+
+.create-anr-source-radio-group,
+.create-anr-source-select,
+.update-controls-dialog .update-controls-select {
+    margin: 18px 0;
+}
+
+/* Align the "after..." select with the audit-order field in Add/Edit risk dialog */
+md-dialog.dialog-width div[layout="row"] > md-select[ng-model="amv.previous"] {
+    margin: 18px 0;
+    align-self: flex-end;
 }
