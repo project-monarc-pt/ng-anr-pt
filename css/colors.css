@@ -106,6 +106,7 @@
     /* Shadows */
     --anr-color-shadow-soft: rgba(0,0,0,0.25);
     --anr-color-shadow-elevated: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
+    --anr-color-shadow-toast: 0 1px 4px rgba(35, 31, 32, 0.12);
 
     /* Others */
     --anr-color-link-accent: #308AA1;
