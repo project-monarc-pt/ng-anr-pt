@@ -2116,6 +2116,10 @@ md-select-menu md-content
     background-color: var(--anr-color-text-on-dark);
 }
 
+.anr-kb-mgmt td.recommendation-description {
+    white-space: pre-line;
+}
+
 .anr-cia-checkbox-row {
     display: flex;
     align-items: center;
