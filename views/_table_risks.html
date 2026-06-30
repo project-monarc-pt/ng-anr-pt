@@ -81,7 +81,8 @@
         <em>{{ 'There are no risks for this instance, or your filters returned no results.' | translate }}</em>
     </div>
 
-   <table editable callback="onRisksTableEdited" class="md-html-table md-html-table-grey big-border-all" ng-if="risks.length > 0">
+    <div class="risks-table-wrapper" ng-if="risks.length > 0">
+   <table editable callback="onRisksTableEdited" class="md-html-table md-html-table-grey big-border-all">
         <thead class="big-border-bottom">
         <tr>
             <th rowspan="2">ID</th>
@@ -139,6 +140,7 @@
         </tr>
         </tbody>
     </table>
+    </div>
 
     <div layout="row" layout-align="end center" class="md-table-pagination">
         <md-button ng-click="createSpecRisk($event)" ng-if="OFFICE_MODE == 'FO' && !isAnrReadOnly && instmode == 'inst' && instance.asset.type != 1"><md-icon>add</md-icon> {{ 'Create a specific risk' | translate }}</md-button>

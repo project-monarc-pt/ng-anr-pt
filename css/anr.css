@@ -1825,6 +1825,10 @@ md-select-menu md-content
 .hpad-10{ padding: 0 10px; }
 .bigger{ font-size: 1.3em; }
 .mw250p {min-width: 250px;}
+
+.anr-instance-cia-row { gap: 30px; }
+.anr-instance-cia-row .label { display: flex; flex-wrap: nowrap; }
+
 .black {color: var(--anr-color-text-default-rgba) !important;}
 
 #anrMainTab > md-tabs-wrapper{
@@ -1853,6 +1857,11 @@ md-select-menu md-content
 }
 .anr-tools-button .material-icons{
     font-size:30px;
+}
+
+.anr-tools-button.anr-tools-button-offset {
+    right: 17px;
+    margin-top: 12px;
 }
 
 /* ANR treeview styles + drag&drap*/
@@ -2401,4 +2410,42 @@ md-list-item.active, md-list-item.active md-icon {
 md-dialog.dialog-width div[layout="row"] > md-select[ng-model="amv.previous"] {
     margin: 18px 0;
     align-self: flex-end;
+}
+
+md-card.shadow {
+    box-shadow: 0 0 1px 0 rgba(0, 0, 0, 0.12), 0 0px 2px 0 rgba(0, 0, 0, 0.12), 0 2px 4px 0px rgba(0, 0, 0, 0.14) !important;
+    padding: 15px;
+}
+
+md-card.scrollable-card {
+    overflow: hidden;
+}
+
+.risks-table-wrapper {
+    overflow-x: auto;
+    background: var(--anr-color-surface-white);
+    position: relative;
+}
+
+.risks-table-wrapper table {
+    min-width: 100%;
+}
+
+@media (max-width: 1279px) {
+    .anr-card-header-row {
+        align-items: stretch !important;
+    }
+
+    .anr-card-header-row > div:first-child {
+        justify-content: flex-start !important;
+        border-right: none;
+    }
+
+    .anr-card-header-row > div:first-child .anr-active-header-text {
+        flex: none !important;
+    }
+
+    .anr-instance-cia-row {
+        padding: 0;
+    }
 }
