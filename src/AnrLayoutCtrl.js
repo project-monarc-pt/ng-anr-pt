@@ -453,6 +453,11 @@
       return str.join('&');
     };
 
+    var getRiskCsvFilename = function(defaultFilename, portugueseFilename) {
+      var currentLanguage = gettextCatalog.currentLanguage || '';
+      return currentLanguage.indexOf('pt') === 0 ? portugueseFilename : defaultFilename;
+    };
+
     $scope.exportAnrRisksTable = function() {
       var params = angular.copy($scope.risks_filters);
       params.csv = true;
@@ -463,7 +468,7 @@
 
       $http.get("api/" + anr + "/" + $scope.model.anr.id + "/risks?" + $scope.serializeQueryString(params)).then(function(data) {
         var contentT = data.headers('Content-Type');
-        DownloadService.downloadCSV(data.data, 'risks.csv', contentT);
+        DownloadService.downloadCSV(data.data, getRiskCsvFilename('risks.csv', 'riscos.csv'), contentT);
       });
     }
 
@@ -505,7 +510,7 @@
 
       $http.get("api/" + anr + "/" + $scope.model.anr.id + "/instances/" + $rootScope.anr_selected_instance_id + '?' + $scope.serializeQueryString(params)).then(function(data) {
         var contentT = data.headers('Content-Type');
-        DownloadService.downloadCSV(data.data, 'risks_inst.csv', contentT);
+        DownloadService.downloadCSV(data.data, getRiskCsvFilename('risks_inst.csv', 'riscos_inst.csv'), contentT);
       });
     }
 
