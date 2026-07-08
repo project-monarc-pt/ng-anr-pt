@@ -630,7 +630,7 @@ function ImportFileDialogCtrl($scope, $http, $mdDialog, ConfigService, AssetServ
 		data = encodeURI('data:text/csv;charset=UTF-8,﻿' + fields.join());
 		link = document.createElement('a');
 		link.setAttribute('href', data);
-		link.setAttribute('download', 'ExampleFile.csv');
+		link.setAttribute('download', (gettextCatalog.currentLanguage || '').indexOf('pt') === 0 ? 'ficheiro_exemplo.csv' : 'ExampleFile.csv');
 		document.body.appendChild(link);
 		link.click();
 	}

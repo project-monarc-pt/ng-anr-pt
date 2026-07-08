@@ -3647,7 +3647,7 @@
 				data = encodeURI('data:text/csv;charset=UTF-8,﻿' + csv);
 				let link = document.createElement('a');
 				link.setAttribute('href', data);
-				link.setAttribute('download', 'matchReferentials.csv');
+				link.setAttribute('download', DownloadService.localizeFilename('matchReferentials.csv'));
 				document.body.appendChild(link);
 				link.click();
 			})
