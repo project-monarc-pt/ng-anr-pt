@@ -138,7 +138,7 @@
             .attr("dy", "2em")
             .attr("font-size", 10)
             .style("text-anchor", "middle")
-            .text(options.xLabel);
+            .text(gettextCatalog.getString(options.xLabel));
         }
 
         svg.append("g")
