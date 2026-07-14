@@ -28,7 +28,7 @@
            fillCategories: [true,false],
            deepData : false,
            initialData : [],
-           color: AnrThemeConfig.charts.categoryScale,
+           color: d3.schemeCategory10,
         };
 
         options=$.extend(options,parameters); //merge the parameters to the default options

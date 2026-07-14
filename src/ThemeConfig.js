@@ -18,8 +18,9 @@
 
           brandPrimary: '#308AA1',
 
-          categoryScale: ['#308AA1', '#231F20', '#BCBEC0', '#78909C', '#6D6F71'],
-          riskScale: ['#BCBEC0', '#78909C', '#231F20'],
+          categoryScale: ['#1f77b4', '#ff7f0e', '#2ca02c', '#9467bd', '#d62728', '#8c564b', '#e377c2', '#7f7f7f', '#bcbd22', '#17becf'],
+          riskScale: ['#2FA36B', '#F1B800', '#C0392B'],
+          riskScaleReversed: ['#C0392B', '#F1B800', '#2FA36B'],
 
           tooltip: {
             background: '#FFFFFF',

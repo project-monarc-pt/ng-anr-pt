@@ -23,7 +23,7 @@
         var options = {
           margin : {top: 50, right: 30, bottom: 50, left: 40},
           width : 400,
-          color : AnrThemeConfig.charts.riskScale,
+          color : d3.schemeCategory10,
           columnsLegend : 3,
         } //default options for the graph
 
