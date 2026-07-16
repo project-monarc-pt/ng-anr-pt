@@ -1634,7 +1634,7 @@
             data = encodeURI('data:text/csv;charset=UTF-8,\uFEFF' + fields.join());
             link = document.createElement('a');
             link.setAttribute('href', data);
-            link.setAttribute('download', 'ExampleFile.csv');
+            link.setAttribute('download', DownloadService.localizeFilename('ExampleFile.csv'));
             document.body.appendChild(link);
             link.click();
         }

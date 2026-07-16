@@ -30,7 +30,7 @@
           margin : {top: 15, right: 100, bottom: 30, left: 40},
           width : 400,
           height : 300,
-          color : AnrThemeConfig.charts.categoryScale,
+          color : d3.schemeCategory10,
           rotationXAxisLabel: 0,
           offsetXAxisLabel: 0,
           showValues : true,

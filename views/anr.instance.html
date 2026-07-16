@@ -1,6 +1,6 @@
 <div class="md-padding" ng-cloak layout="column" ng-controller="AnrObjectInstanceCtrl">
-    <md-card flex>
-        <div class="md-padding-left md-padding-right" layout="column" layout-gt-md="row" layout-align="space-between center">
+    <md-card flex class="shadow">
+        <div class="md-padding-left md-padding-right anr-card-header-row" layout="column" layout-gt-md="row" layout-align="space-between center">
             <div layout="row" layout-align="start center" class="border-right mw250p">
                 <div flex ng-if="instance" class="active-inst anr-instance-header-text anr-active-header-text" ng-class="{'forceBreakWord': !_langField(instance,'name').includes(' ')}">
                     <h2 class="no-margin">
@@ -51,9 +51,9 @@
                 </md-menu>
             </div>
 
-            <div flex="grow" layout="row" layout-align="end top" class="hpad-10 bigger">
+            <div flex="grow" layout="row" layout-align="end top" class="hpad-10 bigger anr-instance-cia-row">
                 <div flex="33">
-                    <span class="bold" ng-class="{'txtright': $mdMedia('gt-md')}"><span translate>Confidentiality</span> :</span>
+                    <span class="bold label" ng-class="{'txtright': $mdMedia('gt-md')}"><span translate>Confidentiality</span> :</span>
                     <span>
                         <md-tooltip class="tooltip-object-header" ng-if="instance.c >= 0">
                           <span ng-if="instance.asset.type == 1" ng-bind-html="getEveryScaleComm(instance, 'c')"></span>
@@ -65,7 +65,7 @@
                 </div>
 
                 <div flex="33">
-                    <span class="bold" ng-class="{'txtright': $mdMedia('gt-md')}"><span translate>Integrity</span> :</span>
+                    <span class="bold label" ng-class="{'txtright': $mdMedia('gt-md')}"><span translate>Integrity</span> :</span>
                     <span>
                         <md-tooltip class="tooltip-object-header" ng-if="instance.i >= 0">
                           <span ng-if="instance.asset.type == 1" ng-bind-html="getEveryScaleComm(instance, 'i')"></span>
@@ -77,7 +77,7 @@
                 </div>
 
                 <div flex="33">
-                    <span class="bold" ng-class="{'txtright': $mdMedia('gt-md')}"><span translate>Availability</span> :</span>
+                    <span class="bold label" ng-class="{'txtright': $mdMedia('gt-md')}"><span translate>Availability</span> :</span>
                     <span>
                         <md-tooltip class="tooltip-object-header" ng-if="instance.d >= 0">
                           <span ng-if="instance.asset.type == 1" ng-bind-html="getEveryScaleComm(instance, 'd')"></span>
@@ -98,7 +98,7 @@
         </md-card-content>
     </md-card>
 
-    <md-card>
+    <md-card class="shadow scrollable-card">
         <md-tabs md-dynamic-height md-border-bottom md-selected="ToolsAnrService.currentTab" ng-if="instance.asset.type == 1">
             <md-tab label="{{ 'Information risks' | translate }}">
                 <ng-include src="'views/anr/_table_risks.html'"></ng-include>

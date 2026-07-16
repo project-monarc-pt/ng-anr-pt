@@ -2931,9 +2931,32 @@
 					}
 
 					function successCreateObject(result) {
-						toastr.success((Array.isArray(result.id) ? result.id.length : 1) + ' ' + tab + ' ' + gettextCatalog.getString('have been created successfully.'),
+						var count = Array.isArray(result.id) ? result.id.length : 1;
+						toastr.success(gettextCatalog.getString('Creation completed successfully: {{count}} {{entityName}}', {
+								count: count,
+								entityName: getImportedEntityName(tab, count)
+							}),
 							gettextCatalog.getString('Creation successful'));
 					};
+
+					function getImportedEntityName(tab, count) {
+						var entityNames = {
+							'Asset types': ['Asset type', 'Asset types'],
+							'Threats': ['Threat', 'Threats'],
+							'Vulnerabilties': ['Vulnerability', 'Vulnerabilities'],
+							'Controls': ['Control', 'Controls'],
+							'Information risks': ['Information risk', 'Information risks'],
+							'Categories': ['Category', 'Categories'],
+							'Tags': ['Tag', 'Tags'],
+							'Operational risks': ['Operational risk', 'Operational risks'],
+							'Matches': ['Match', 'Matches'],
+							'Recommendations': ['Recommendation', 'Recommendations'],
+							'Assets library': ['Asset', 'Assets']
+						};
+						var entityName = entityNames[tab] || [tab, tab];
+
+						return gettextCatalog.getString(count === 1 ? entityName[0] : entityName[1]);
+					}
 				}, function(reject) {
 					$scope.handleRejectionDialog(reject);
 				});
@@ -3647,7 +3670,7 @@
 				data = encodeURI('data:text/csv;charset=UTF-8,﻿' + csv);
 				let link = document.createElement('a');
 				link.setAttribute('href', data);
-				link.setAttribute('download', 'matchReferentials.csv');
+				link.setAttribute('download', DownloadService.localizeFilename('matchReferentials.csv'));
 				document.body.appendChild(link);
 				link.click();
 			})

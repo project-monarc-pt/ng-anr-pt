@@ -31,7 +31,7 @@
 					width: 400,
 					height: 300,
 					sort: false,
-					color: AnrThemeConfig.charts.categoryScale,
+					color: d3.schemeCategory10,
 					colorGradient: false,
 					showValues: true,
 				} //default options for the graph
@@ -122,15 +122,15 @@
 						.attr("transform", `translate(0,${height})`)
 						.call(xAxis);
 
-					if (options.xLabel) {
-						svg.append("text")
-							.attr("x", width / 2)
-							.attr("y", height)
-							.attr("dy", "2em")
-							.attr("font-size", 10)
-							.style("text-anchor", "middle")
-							.text(options.xLabel);
-					}
+						if (options.xLabel) {
+							svg.append("text")
+								.attr("x", width / 2)
+								.attr("y", height)
+								.attr("dy", "2em")
+								.attr("font-size", 10)
+								.style("text-anchor", "middle")
+								.text(gettextCatalog.getString(options.xLabel));
+						}
 
 					svg.append("text")
 						.attr("x", (width / 2))
