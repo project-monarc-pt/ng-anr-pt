@@ -137,10 +137,7 @@
           .range(options.color)
 
         if (options.colorGradient) {
-          color = d3.scaleLinear()
-            .range(options.color)
-            .domain(d3.extent(values))
-            .interpolate(d3.interpolateHcl)
+          color = AnrThemeConfig.gradientScale(values, options.color)
         }
 
 

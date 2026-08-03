@@ -32,6 +32,12 @@
             background: '#FFFFFF'
           }
         },
+        // Continuous colour scale spreading every colour evenly across the value range.
+        gradientScale: function (values, colors) {
+          const [min, max] = d3.extent(values);
+          const stops = colors.map((c, i) => min + (max - min) * i / (colors.length - 1));
+          return d3.scaleLinear().range(colors).domain(stops).interpolate(d3.interpolateHcl);
+        },
 
         // Export template styling outside the graph itself.
         exports: {
