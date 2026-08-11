@@ -51,7 +51,7 @@ function ImportFileDialogCtrl($scope, $http, $mdDialog, ConfigService, AssetServ
 			});
 			SOACategoryService.getCategories({
 				order: $scope._langField('label'),
-				referential: referential.uuid
+				referential: referential
 			}).then(function(data) {
 				$scope.actualExternalItems = data.categories;
 			});
@@ -89,10 +89,10 @@ function ImportFileDialogCtrl($scope, $http, $mdDialog, ConfigService, AssetServ
 			});
 			break;
 		case 'Recommendations':
-			ClientRecommendationService.getRecommendations({
-				anr: recommendationSet.anr.id
-			}).then(data => {
-				codes = data.recommendations.map(recommendation => recommendation.code.toLowerCase());;
+			// The ANR is taken from the route (client-anr/:urlAnrId/recommendations) and overrides
+			// any anr query param, so no filter is needed here.
+			ClientRecommendationService.getRecommendations().then(data => {
+				codes = data.recommendations.map(recommendation => recommendation.code.toLowerCase());
 			});
 			break;
 		case 'Assets library':
@@ -376,6 +376,11 @@ function ImportFileDialogCtrl($scope, $http, $mdDialog, ConfigService, AssetServ
 	};
 
 	$scope.uploadFile = async function() {
+		if ((tab == 'Recommendations' && (!recommendationSet || !recommendationSet.uuid)) ||
+			(tab == 'Controls' && !referential)) {
+			alertMissingContainer();
+			return;
+		}
 		let filedata = angular.copy($scope.importData);
 		let itemFields = [
 			'uuid',
@@ -793,6 +798,19 @@ function ImportFileDialogCtrl($scope, $http, $mdDialog, ConfigService, AssetServ
 			.ok(gettextCatalog.getString('Cancel'))
 		$mdDialog.show(alert);
 		$scope.check = true;
+	}
+
+	// The selected referential / recommendation set could not be resolved, so imported rows would be
+	// attached to nothing. Warn instead of silently posting incomplete data.
+	function alertMissingContainer() {
+		let alert = $mdDialog.alert()
+			.multiple(true)
+			.title(gettextCatalog.getString('Error'))
+			.textContent(gettextCatalog.getString(tab == 'Controls' ?
+				'Select a referential' : 'Select a recommendation set'))
+			.theme('light')
+			.ok(gettextCatalog.getString('Cancel'))
+		$mdDialog.show(alert);
 	}
 
 	function checkRequiredFields(row) {

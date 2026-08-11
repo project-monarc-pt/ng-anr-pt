@@ -90,6 +90,50 @@
 		$scope.gettext = gettextCatalog.getString;
 		TableHelperService.resetBookmarks();
 
+		/*
+		 * The container create-dialogs (CreateReferentialDialogCtrl / CreateRecommendationSetDialogCtrl)
+		 * run on this very scope (scope: $scope, preserveScope: true) and overwrite $scope.referential /
+		 * $scope.recommendationSet with a labels-only stub that has no uuid; cancelling does not revert it.
+		 * The *_uuid companions are always kept in sync by the tab md-on-select handlers, so recover the
+		 * container from the already-loaded tab list whenever the object is missing or incomplete.
+		 *
+		 * Pass loadedItems whenever the caller needs the full object (labels included) - create.measures
+		 * renders referential['label' + language] in a required, uuid-disabled input, so a uuid-only stub
+		 * would leave that field permanently blank and the form unsubmittable.
+		 */
+		function resolveSelected(container, uuid, loadedItems) {
+			if (container && container.uuid) {
+				return container;
+			}
+			if (!uuid) {
+				return undefined;
+			}
+			var found = (loadedItems || []).find(function(item) {
+				return item.uuid === uuid;
+			});
+			return found || {uuid: uuid};
+		}
+
+		function loadedReferentials() {
+			return ($scope.referentials.items || {}).referentials || [];
+		}
+
+		function loadedRecommendationsSets() {
+			return ($scope.recommendationsSets.items || {})['recommendations-sets'] || [];
+		}
+
+		/*
+		 * Refuse to open a child-creation dialog when no container can be resolved: its .then() reads
+		 * .uuid off the container, and the dialog would otherwise post rows attached to nothing.
+		 */
+		function requireSelected(container, missingMessage) {
+			if (container && container.uuid) {
+				return true;
+			}
+			toastr.error(gettextCatalog.getString(missingMessage), gettextCatalog.getString('Error'));
+			return false;
+		}
+
 
 		/**** FO ADDITIONS ****/
 
@@ -948,6 +992,9 @@
 		$scope.selectReferential = function(referentialId, index) {
 			$scope.refTabSelected = index;
 			$scope.referential_uuid = referentialId;
+			// Resolve synchronously from the list that is already loaded (the referential tabs are
+			// ng-repeated over it), so consumers never observe an undefined/stale referential.
+			$scope.referential = resolveSelected(undefined, referentialId, loadedReferentials());
 			ReferentialService.getReferential(referentialId).then(function(data) {
 				$scope.referential = data;
 			});
@@ -1242,6 +1289,11 @@
 
 		$scope.createNewMeasure = function(ev, measure) {
 			var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'));
+			var referential = resolveSelected($scope.referential, $scope.referential_uuid,
+				loadedReferentials());
+			if (!requireSelected(referential, 'Select a referential')) {
+				return;
+			}
 
 			$mdDialog.show({
 				controller: ['$scope', 'toastr', '$mdMedia', '$mdDialog', 'gettextCatalog', 'SOACategoryService',
@@ -1256,14 +1308,14 @@
 				fullscreen: useFullScreen,
 				locals: {
 					'measure': measure,
-					'referential': $scope.referential,
+					'referential': referential,
 					'anrId': $scope.model.anr
 				}
 			})
 				.then(function(measure) {
 					var cont = measure.cont;
 					measure.cont = undefined;
-					measure.referentialUuid = $scope.referential.uuid;
+					measure.referentialUuid = referential.uuid;
 					measure.categoryId = measure.category.id
 					if (cont) {
 						$scope.createNewMeasure(ev);
@@ -1289,6 +1341,11 @@
 
 		$scope.editMeasure = function(ev, measure) {
 			var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'));
+			var referential = resolveSelected($scope.referential, $scope.referential_uuid,
+				loadedReferentials());
+			if (!requireSelected(referential, 'Select a referential')) {
+				return;
+			}
 
 			MeasureService.getMeasure(measure.uuid).then(function(measureData) {
 				$mdDialog.show({
@@ -1304,12 +1361,12 @@
 					fullscreen: useFullScreen,
 					locals: {
 						'measure': measureData,
-						'referential': $scope.referential,
+						'referential': referential,
 						'anrId': $scope.model.anr
 					}
 				})
 					.then(function(measure) {
-						measure.referentialUuid = $scope.referential.uuid;
+						measure.referentialUuid = referential.uuid;
 						measure.categoryId = measure.category.id;
 						MeasureService.updateMeasure(measure,
 							function() {
@@ -2456,6 +2513,10 @@
 		$scope.selectRecommendationSet = function(RecommendationSetId, index) {
 			$scope.recSetTabSelected = index;
 			$scope.recommendation_set_uuid = RecommendationSetId;
+			// Resolve synchronously from the list that is already loaded (the set tabs are ng-repeated
+			// over it), so consumers never observe an undefined/stale set.
+			$scope.recommendationSet = resolveSelected(undefined, RecommendationSetId,
+				loadedRecommendationsSets());
 			ClientRecommendationService.getRecommendationSet(RecommendationSetId).then(function(data) {
 				$scope.recommendationSet = data;
 			});
@@ -2694,7 +2755,11 @@
 
 		$scope.createNewRecommendation = function(ev, recommendation) {
 			var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'));
-
+			var recommendationSet = resolveSelected($scope.recommendationSet,
+				$scope.recommendation_set_uuid, loadedRecommendationsSets());
+			if (!requireSelected(recommendationSet, 'Select a recommendation set')) {
+				return;
+			}
 
 			$mdDialog.show({
 				controller: ['$scope', '$mdDialog',
@@ -2709,14 +2774,14 @@
 				fullscreen: useFullScreen,
 				locals: {
 					'recommendation': recommendation,
-					'recommendationSet': $scope.recommendationSet
+					'recommendationSet': recommendationSet
 				}
 			})
 				.then(function(recommendation) {
 					var cont = recommendation.cont;
 					recommendation.cont = undefined;
 					recommendation.anr = $scope.model.anr.id;
-					recommendation.recommendationSet = $scope.recommendationSet.uuid;
+					recommendation.recommendationSet = recommendationSet.uuid;
 					if (cont) {
 						$scope.createNewRecommendation(ev);
 					}
@@ -2741,6 +2806,8 @@
 
 		$scope.editRecommendation = function(ev, recommendation) {
 			var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'));
+			var recommendationSet = resolveSelected($scope.recommendationSet,
+				$scope.recommendation_set_uuid, loadedRecommendationsSets());
 
 			ClientRecommendationService.getRecommendation(recommendation.uuid).then(function(recommendationData) {
 				$mdDialog.show({
@@ -2756,7 +2823,7 @@
 					fullscreen: useFullScreen,
 					locals: {
 						'recommendation': recommendationData,
-						'recommendationSet': $scope.recommendationSet
+						'recommendationSet': recommendationSet
 					}
 				})
 					.then(function(recommendation) {
@@ -2836,6 +2903,33 @@
 		//Import File Center
 
 		$scope.importFile = function(ev, tab) {
+			/*
+			 * NB: this runs on the child scope created by ng-controller="AnrKbMgmtCtrl" on the import
+			 * buttons of the create.* dialogs. RefSelected / RecSetSelected / referential /
+			 * recommendationSet / *_uuid are never assigned by this (inner) controller instance, so they
+			 * resolve to the KB controller scope through prototypal inheritance. Do not look them up in
+			 * $scope.referentials / $scope.recommendationsSets: those ARE assigned at construction time
+			 * and are therefore shadowed by the inner instance with an empty array.
+			 */
+			var referential = $scope.RefSelected ||
+				($scope.referential && $scope.referential.uuid) || $scope.referential_uuid;
+			var recommendationSet = resolveSelected($scope.RecSetSelected || $scope.recommendationSet,
+				$scope.recommendation_set_uuid);
+
+			// Bail out visibly rather than letting ImportFileDialogCtrl fail to instantiate, which would
+			// silently swallow the dialog. Guard before the cancel below, so a half-filled create dialog
+			// is not thrown away.
+			if (tab == 'Controls' && !referential) {
+				toastr.error(gettextCatalog.getString('Select a referential'),
+					gettextCatalog.getString('Error'));
+				return;
+			}
+			if (tab == 'Recommendations' && (!recommendationSet || !recommendationSet.uuid)) {
+				toastr.error(gettextCatalog.getString('Select a recommendation set'),
+					gettextCatalog.getString('Error'));
+				return;
+			}
+
 			$mdDialog.cancel();
 			var useFullScreen = ($mdMedia('sm') || $mdMedia('xs'));
 
@@ -2853,8 +2947,8 @@
 				fullscreen: useFullScreen,
 				locals: {
 					'tab': tab,
-					'referential': $scope.RefSelected,
-					'recommendationSet': $scope.RecSetSelected,
+					'referential': referential,
+					'recommendationSet': recommendationSet,
 				}
 			})
 				.then(function(importData) {
