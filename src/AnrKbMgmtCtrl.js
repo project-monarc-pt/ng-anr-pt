@@ -4560,50 +4560,54 @@
 	function CreateRecommendationDialogCtrl($scope, $mdDialog, ClientRecommendationService,
 																					ConfigService, recommendation, recommendationSet) {
 
+		$scope.languages = ConfigService.getLanguages();
+		$scope.language = $scope.getAnrLanguage();
+		$scope.categorySearchText = '';
+		$scope.RecSetSelected = recommendationSet;
+		if (recommendation != undefined && recommendation != null) {
+			$scope.recommendation = recommendation;
+		} else {
+			$scope.recommendation = {
+				recommendationSet: recommendationSet,
+				code: '',
+				description: '',
+				importance: '',
+			};
+		}
+
+		$scope.loadOptions = function(ev) {
+			ClientRecommendationService.getRecommendations().then(function(data) {
+				$scope.options = data.recommendations;
+			});
+			return $scope.options;
+		};
+
+		$scope.setSelectedRecommendation = function(ev, selectedRec) {
+			if (selectedRec !== undefined) {
+				$scope.recommendation['code'] = selectedRec.code;
+				$scope.recommendation['importance'] = selectedRec.importance;
+				$scope.recommendation['description'] = selectedRec.description;
+			}
+		};
+
+		$scope.cancel = function() {
+			$mdDialog.cancel();
+		};
+
+		$scope.create = function() {
+			$mdDialog.hide($scope.recommendation);
+		};
+		$scope.createAndContinue = function() {
+			$scope.recommendation.cont = true;
+			$mdDialog.hide($scope.recommendation);
+		};
+
+		// Only the list of sets (edit mode's "Select a recommendation set" field) needs to be async.
+		// Keeping the rest above gated on it left the dialog's own buttons dead until it resolved, and
+		// left RecSetSelected undefined for the "Import from file" button rendered in the meantime.
 		ClientRecommendationService.getRecommendationsSets().then(function(data) {
 			$scope.recommendationSets = data['recommendations-sets'];
-			$scope.languages = ConfigService.getLanguages();
-			$scope.language = $scope.getAnrLanguage();
-			$scope.categorySearchText = '';
-			$scope.RecSetSelected = recommendationSet;
-			if (recommendation != undefined && recommendation != null) {
-				$scope.recommendation = recommendation;
-			} else {
-				$scope.recommendation = {
-					recommendationSet: recommendationSet,
-					code: '',
-					description: '',
-					importance: '',
-				};
-			}
-
-			$scope.loadOptions = function(ev) {
-				ClientRecommendationService.getRecommendations().then(function(data) {
-					$scope.options = data.recommendations;
-				});
-				return $scope.options;
-			};
-
-			$scope.setSelectedRecommendation = function(ev, selectedRec) {
-				if (selectedRec !== undefined) {
-					$scope.recommendation['code'] = selectedRec.code;
-					$scope.recommendation['importance'] = selectedRec.importance;
-					$scope.recommendation['description'] = selectedRec.description;
-				}
-			};
-
-			$scope.cancel = function() {
-				$mdDialog.cancel();
-			};
-
-			$scope.create = function() {
-				$mdDialog.hide($scope.recommendation);
-			};
-			$scope.createAndContinue = function() {
-				$scope.recommendation.cont = true;
-				$mdDialog.hide($scope.recommendation);
-			};
-		})
+		});
 	}
 
 	function ImportAmvDialogCtrl($rootScope, $scope, $http, $mdDialog, $q, ConfigService, AssetService, ThreatService, VulnService, AmvService, amv) {
