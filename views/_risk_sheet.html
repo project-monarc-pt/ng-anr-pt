@@ -117,7 +117,7 @@
                                 md-menu-class="reco-autocomplete"
                                 md-floating-label="{{ 'Search a recommendation' | translate }}">
                             <md-item-template>
-                                <span md-highlight-text="recSearchText" md-highlight-flags="^i" >{{ item.code }} - {{ item.description }}</span>
+                                <span ng-class="{'bold': item.matchesRiskControl}" md-highlight-text="recSearchText" md-highlight-flags="^i" >{{ item.code }} - {{ item.description }}</span>
                                 <md-tooltip class="tooltip-recommendation">{{ item.code }} - {{ item.description }}</md-tooltip>
                             </md-item-template>
 
