@@ -2763,7 +2763,8 @@
 
 			$mdDialog.show({
 				controller: ['$scope', '$mdDialog',
-					'ClientRecommendationService', 'ConfigService', 'recommendation', 'recommendationSet',
+					'ClientRecommendationService', 'ConfigService', 'ReferentialService', 'MeasureService', '$q',
+					'recommendation', 'recommendationSet',
 					CreateRecommendationDialogCtrl
 				],
 				templateUrl: 'views/anr/create.recommendation-kbase.html',
@@ -2812,7 +2813,8 @@
 			ClientRecommendationService.getRecommendation(recommendation.uuid).then(function(recommendationData) {
 				$mdDialog.show({
 					controller: ['$scope', '$mdDialog',
-						'ClientRecommendationService', 'ConfigService', 'recommendation', 'recommendationSet',
+						'ClientRecommendationService', 'ConfigService', 'ReferentialService', 'MeasureService', '$q',
+						'recommendation', 'recommendationSet',
 						CreateRecommendationDialogCtrl
 					],
 					templateUrl: 'views/anr/create.recommendation-kbase.html',
@@ -4558,7 +4560,8 @@
 	}
 
 	function CreateRecommendationDialogCtrl($scope, $mdDialog, ClientRecommendationService,
-																					ConfigService, recommendation, recommendationSet) {
+																					ConfigService, ReferentialService, MeasureService, $q,
+																					recommendation, recommendationSet) {
 
 		$scope.languages = ConfigService.getLanguages();
 		$scope.language = $scope.getAnrLanguage();
@@ -4574,6 +4577,68 @@
 				importance: '',
 			};
 		}
+
+		// The controls this recommendation implements, grouped by referential for the chips, the way
+		// the AMV dialog groups them. The API returns objects and expects a flat list of uuids back.
+		// The referentials are loaded here rather than taken from the preserved scope, so the dialog
+		// works whether or not the referentials tab was opened first.
+		$scope.recommendationReferentials = [];
+		$scope.selectedReferential = null;
+		$scope.recommendationMeasures = {};
+
+		ReferentialService.getReferentials({order: 'createdAt'}).then(function(data) {
+			$scope.recommendationReferentials = data['referentials'] || [];
+			$scope.selectedReferential = $scope.recommendationReferentials[0] || null;
+			$scope.recommendationReferentials.forEach(function(ref) {
+				$scope.recommendationMeasures[ref.uuid] = ($scope.recommendation.measures || []).filter(
+					function(measure) {
+						return measure.referential !== undefined && measure.referential.uuid === ref.uuid;
+					}
+				);
+			});
+		});
+
+		$scope.selectRecommendationReferential = function(referential) {
+			$scope.selectedReferential = referential;
+		};
+
+		// Offers the controls of the selected referential, minus the ones already picked.
+		$scope.queryRecommendationMeasureSearch = function(query) {
+			var promise = $q.defer();
+			if ($scope.selectedReferential === null) {
+				promise.resolve([]);
+
+				return promise.promise;
+			}
+
+			var referentialUuid = $scope.selectedReferential.uuid;
+			MeasureService.getMeasures({
+				filter: query,
+				referential: referentialUuid,
+				order: 'code'
+			}).then(function(data) {
+				var alreadyPicked = $scope.recommendationMeasures[referentialUuid] || [];
+				promise.resolve(data.measures.filter(function(measure) {
+					return !alreadyPicked.some(function(picked) {
+						return picked.uuid === measure.uuid;
+					});
+				}));
+			}, function() {
+				promise.reject();
+			});
+
+			return promise.promise;
+		};
+
+		var flattenRecommendationMeasures = function() {
+			var uuids = [];
+			Object.keys($scope.recommendationMeasures).forEach(function(referentialUuid) {
+				$scope.recommendationMeasures[referentialUuid].forEach(function(measure) {
+					uuids.push(measure.uuid);
+				});
+			});
+			$scope.recommendation.measures = uuids;
+		};
 
 		$scope.loadOptions = function(ev) {
 			ClientRecommendationService.getRecommendations().then(function(data) {
@@ -4595,9 +4660,11 @@
 		};
 
 		$scope.create = function() {
+			flattenRecommendationMeasures();
 			$mdDialog.hide($scope.recommendation);
 		};
 		$scope.createAndContinue = function() {
+			flattenRecommendationMeasures();
 			$scope.recommendation.cont = true;
 			$mdDialog.hide($scope.recommendation);
 		};
