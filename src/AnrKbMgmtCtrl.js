@@ -2567,11 +2567,16 @@
 		};
 
 		$scope.toggleRecommendationStatus = function(recommendation) {
-			recommendation.recommendationSet = recommendation.recommendationSet.uuid;
-			recommendation.status = !recommendation.status;
-			ClientRecommendationService.updateRecommendation(recommendation, function() {
-				$scope.updateRecommendations();
-			});
+			// Only the status travels. Sending the whole list row would carry its controls along,
+			// and those come back from the API as objects while the field expects uuids, so the
+			// request would be rejected and the toggle would silently revert on the next refresh.
+			var newStatus = recommendation.status ? 0 : 1;
+			ClientRecommendationService.updateRecommendation(
+				{uuid: recommendation.uuid, status: newStatus},
+				function() {
+					$scope.updateRecommendations();
+				}
+			);
 		}
 
 		$scope.updateRecommendationsSets = function() {
@@ -4585,17 +4590,36 @@
 		$scope.recommendationReferentials = [];
 		$scope.selectedReferential = null;
 		$scope.recommendationMeasures = {};
+		// Until the referentials arrive the dialog cannot show, let alone edit, the controls. Saying
+		// nothing about them is the only safe payload: the API leaves the existing links alone when
+		// the field is absent.
+		var referentialsLoaded = false;
+		// Links the chips cannot represent -- a control whose referential is null, or one from a
+		// referential the request did not return. Carried through untouched instead of dropped.
+		var unlistedMeasureUuids = [];
 
 		ReferentialService.getReferentials({order: 'createdAt'}).then(function(data) {
 			$scope.recommendationReferentials = data['referentials'] || [];
 			$scope.selectedReferential = $scope.recommendationReferentials[0] || null;
 			$scope.recommendationReferentials.forEach(function(ref) {
-				$scope.recommendationMeasures[ref.uuid] = ($scope.recommendation.measures || []).filter(
-					function(measure) {
-						return measure.referential !== undefined && measure.referential.uuid === ref.uuid;
-					}
-				);
+				$scope.recommendationMeasures[ref.uuid] = [];
 			});
+
+			angular.forEach($scope.recommendation.measures || [], function(measure) {
+				// A previous submit that failed hands the payload back with plain uuids.
+				if (angular.isString(measure)) {
+					unlistedMeasureUuids.push(measure);
+					return;
+				}
+				var referentialUuid = measure.referential && measure.referential.uuid;
+				if (referentialUuid && $scope.recommendationMeasures[referentialUuid] !== undefined) {
+					$scope.recommendationMeasures[referentialUuid].push(measure);
+					return;
+				}
+				unlistedMeasureUuids.push(measure.uuid);
+			});
+
+			referentialsLoaded = true;
 		});
 
 		$scope.selectRecommendationReferential = function(referential) {
@@ -4630,14 +4654,26 @@
 			return promise.promise;
 		};
 
-		var flattenRecommendationMeasures = function() {
-			var uuids = [];
+		// Returns what to send, without touching $scope.recommendation: the create error handler
+		// reopens the dialog with the very object it resolved with, and rewriting the controls into
+		// bare uuids there would make the reopened dialog unable to group them again.
+		var getRecommendationToSubmit = function() {
+			var recommendationToSubmit = angular.extend({}, $scope.recommendation);
+			if (!referentialsLoaded) {
+				delete recommendationToSubmit.measures;
+
+				return recommendationToSubmit;
+			}
+
+			var uuids = unlistedMeasureUuids.slice();
 			Object.keys($scope.recommendationMeasures).forEach(function(referentialUuid) {
 				$scope.recommendationMeasures[referentialUuid].forEach(function(measure) {
 					uuids.push(measure.uuid);
 				});
 			});
-			$scope.recommendation.measures = uuids;
+			recommendationToSubmit.measures = uuids;
+
+			return recommendationToSubmit;
 		};
 
 		$scope.loadOptions = function(ev) {
@@ -4660,13 +4696,12 @@
 		};
 
 		$scope.create = function() {
-			flattenRecommendationMeasures();
-			$mdDialog.hide($scope.recommendation);
+			$mdDialog.hide(getRecommendationToSubmit());
 		};
 		$scope.createAndContinue = function() {
-			flattenRecommendationMeasures();
-			$scope.recommendation.cont = true;
-			$mdDialog.hide($scope.recommendation);
+			var recommendationToSubmit = getRecommendationToSubmit();
+			recommendationToSubmit.cont = true;
+			$mdDialog.hide(recommendationToSubmit);
 		};
 
 		// Only the list of sets (edit mode's "Select a recommendation set" field) needs to be async.
