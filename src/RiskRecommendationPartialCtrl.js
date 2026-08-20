@@ -73,10 +73,84 @@
             });
         }
 
+        // The controls of this risk: the measures of its AMV, or of the RolfRisk for operational
+        // ones. The same list the "Security referentials" panel of this sheet renders.
+        // Returns null when they are unknown, so that nothing gets filtered out.
+        function getRiskControlUuids() {
+            var risk = isOpRiskMode ? $scope.opsheet_risk : $scope.sheet_risk;
+            var measures = (risk && risk.measures) || null;
+            // An empty list is treated as unknown too: a risk carrying no control at all tells us
+            // nothing about which recommendations apply there, and hiding the whole linked library
+            // would be a pure loss. Keeps operational risks inert until controls are linked to them.
+            if (measures === null || measures.length === 0) {
+                return null;
+            }
+
+            var uuids = {};
+            angular.forEach(measures, function (measure) {
+                if (measure.uuid) {
+                    uuids[measure.uuid] = true;
+                }
+            });
+
+            return uuids;
+        }
+
+        function getAttachedRecommendationUuids() {
+            var uuids = {};
+            angular.forEach($scope.recommendations || [], function (recommendationRisk) {
+                if (recommendationRisk.recommendation) {
+                    uuids[recommendationRisk.recommendation.uuid] = true;
+                }
+            });
+
+            return uuids;
+        }
+
+        // A recommendation linked to controls (recommandations_measures, curated in the knowledge
+        // base the way measures_amvs is) is offered only where one of those controls applies, in
+        // bold and first until it gets attached. A recommendation linked to none is offered as
+        // before, and nothing is filtered out while the risk's controls are unknown.
+        function applyRiskControlsToRecommendations(recommendations) {
+            var riskControlUuids = getRiskControlUuids();
+            var attachedUuids = getAttachedRecommendationUuids();
+            var matching = [];
+            var others = [];
+
+            angular.forEach(recommendations || [], function (recommendation) {
+                recommendation.matchesRiskControl = false;
+
+                var measures = recommendation.measures || [];
+                if (riskControlUuids === null || measures.length === 0) {
+                    others.push(recommendation);
+                    return;
+                }
+
+                var appliesHere = false;
+                angular.forEach(measures, function (measure) {
+                    if (riskControlUuids[measure.uuid] === true) {
+                        appliesHere = true;
+                    }
+                });
+                if (!appliesHere) {
+                    return;
+                }
+                if (attachedUuids[recommendation.uuid] === true) {
+                    others.push(recommendation);
+                    return;
+                }
+
+                recommendation.matchesRiskControl = true;
+                matching.push(recommendation);
+            });
+
+            return matching.concat(others);
+        }
+
         $scope.queryRecSearch = function (query) {
             var q = $q.defer();
             ClientRecommendationService.getRecommendations({order: 'code', filter: query}).then(function (data) {
-                q.resolve(data.recommendations);
+                q.resolve(applyRiskControlsToRecommendations(data.recommendations));
             }, function () {
                 q.reject();
             });

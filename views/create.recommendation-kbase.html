@@ -28,7 +28,7 @@
                 <md-input-container ng-if="recommendation.uuid" class="md-block" style="margin-right: 10px;">
                     <label translate>Select a recommendation set</label>
                     <md-select flex ng-model="recommendation.recommendationSet.uuid">
-                        <md-option ng-repeat="recommendationSet in recommendationSets" ng-value="recommendationSet.uuid">{{ _langField(recommendationSet,'label') }}</md-option>
+                        <md-option ng-repeat="recommendationSet in recommendationSets" ng-value="recommendationSet.uuid">{{ recommendationSet.label }}</md-option>
                     </md-select>
                 </md-input-container>
 
@@ -37,6 +37,43 @@
                     <label translate>Code</label>
                     <input type="text" ng-model="recommendation.code" ng-required="true">
                 </md-input-container>
+
+                <!-- The controls this recommendation implements. A recommendation linked to controls
+                     is only offered on the risks that carry one of them; one linked to none stays
+                     available everywhere. -->
+                <div class="md-block" flex>
+                    <label class="md-placeholder" translate>Controls</label>
+                    <md-tabs md-dynamic-height="true">
+                        <md-tab ng-repeat="ref in recommendationReferentials"
+                                label="{{ _langField(ref,'label') }}"
+                                md-on-select="selectRecommendationReferential(ref)">
+
+                            <md-chips ng-model="recommendationMeasures[ref.uuid]"
+                                      md-autocomplete-snap
+                                      md-require-match="true">
+
+                                <md-autocomplete flex
+                                                 md-selected-item="selectedMeasureItem"
+                                                 md-search-text="measureSearchText"
+                                                 md-items="item in queryRecommendationMeasureSearch(measureSearchText)"
+                                                 md-item-text="item.code + ' (' + _langField(item,'label') + ')'"
+                                                 md-delay="300"
+                                                 md-min-length="0"
+                                                 md-no-cache="true"
+                                                 placeholder="+ {{ 'Add controls from referential' | translate }} {{ _langField(selectedReferential,'label') }}">
+                                    <span md-highlight-text="measureSearchText">{{ item.code }} - {{ _langField(item,'label') }}</span>
+                                </md-autocomplete>
+
+                                <md-chip-template>
+                                    <span>
+                                        <strong>{{ $chip.code }}</strong>
+                                        <em>{{ _langField($chip,'label') }}</em>
+                                    </span>
+                                </md-chip-template>
+                            </md-chips>
+                        </md-tab>
+                    </md-tabs>
+                </div>
 
                 <div style="margin-bottom:10px">
                   <md-icon>star</md-icon>
