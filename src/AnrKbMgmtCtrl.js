@@ -2769,7 +2769,7 @@
 			$mdDialog.show({
 				controller: ['$scope', '$mdDialog',
 					'ClientRecommendationService', 'ConfigService', 'ReferentialService', 'MeasureService', '$q',
-					'recommendation', 'recommendationSet',
+					'recommendation', 'recommendationSet', 'recommendationSets',
 					CreateRecommendationDialogCtrl
 				],
 				templateUrl: 'views/anr/create.recommendation-kbase.html',
@@ -2780,7 +2780,8 @@
 				fullscreen: useFullScreen,
 				locals: {
 					'recommendation': recommendation,
-					'recommendationSet': recommendationSet
+					'recommendationSet': recommendationSet,
+					'recommendationSets': loadedRecommendationsSets()
 				}
 			})
 				.then(function(recommendation) {
@@ -2819,7 +2820,7 @@
 				$mdDialog.show({
 					controller: ['$scope', '$mdDialog',
 						'ClientRecommendationService', 'ConfigService', 'ReferentialService', 'MeasureService', '$q',
-						'recommendation', 'recommendationSet',
+						'recommendation', 'recommendationSet', 'recommendationSets',
 						CreateRecommendationDialogCtrl
 					],
 					templateUrl: 'views/anr/create.recommendation-kbase.html',
@@ -2830,7 +2831,8 @@
 					fullscreen: useFullScreen,
 					locals: {
 						'recommendation': recommendationData,
-						'recommendationSet': recommendationSet
+						'recommendationSet': recommendationSet,
+						'recommendationSets': loadedRecommendationsSets()
 					}
 				})
 					.then(function(recommendation) {
@@ -4566,7 +4568,12 @@
 
 	function CreateRecommendationDialogCtrl($scope, $mdDialog, ClientRecommendationService,
 																					ConfigService, ReferentialService, MeasureService, $q,
-																					recommendation, recommendationSet) {
+																					recommendation, recommendationSet, recommendationSets) {
+
+		// Handed over by the caller, which already has them loaded, rather than fetched here: the
+		// md-select materialises its options when the template is linked, so a list that arrives
+		// afterwards never reaches it and the field stays empty. Same shape the BackOffice uses.
+		$scope.recommendationSets = recommendationSets;
 
 		$scope.languages = ConfigService.getLanguages();
 		$scope.language = $scope.getAnrLanguage();
@@ -4704,12 +4711,6 @@
 			$mdDialog.hide(recommendationToSubmit);
 		};
 
-		// Only the list of sets (edit mode's "Select a recommendation set" field) needs to be async.
-		// Keeping the rest above gated on it left the dialog's own buttons dead until it resolved, and
-		// left RecSetSelected undefined for the "Import from file" button rendered in the meantime.
-		ClientRecommendationService.getRecommendationsSets().then(function(data) {
-			$scope.recommendationSets = data['recommendations-sets'];
-		});
 	}
 
 	function ImportAmvDialogCtrl($rootScope, $scope, $http, $mdDialog, $q, ConfigService, AssetService, ThreatService, VulnService, AmvService, amv) {
