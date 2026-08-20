@@ -28,7 +28,7 @@
                 <md-input-container ng-if="recommendation.uuid" class="md-block" style="margin-right: 10px;">
                     <label translate>Select a recommendation set</label>
                     <md-select flex ng-model="recommendation.recommendationSet.uuid">
-                        <md-option ng-repeat="recommendationSet in recommendationSets" ng-value="recommendationSet.uuid">{{ _langField(recommendationSet,'label') }}</md-option>
+                        <md-option ng-repeat="recommendationSet in recommendationSets" ng-value="recommendationSet.uuid">{{ recommendationSet.label }}</md-option>
                     </md-select>
                 </md-input-container>
 
