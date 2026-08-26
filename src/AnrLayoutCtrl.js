@@ -359,20 +359,27 @@
       });
     };
 
-    $rootScope.$on('recommendationsSetsUpdated', function() {
+    var offRecommendationsSetsUpdated = $rootScope.$on('recommendationsSetsUpdated', function() {
       $scope.updateRecommendationsSets();
     });
 
-    $rootScope.$on('referentialsUpdated', function() {
+    var offReferentialsUpdated = $rootScope.$on('referentialsUpdated', function() {
       $scope.updateReferentials();
     });
 
-    $rootScope.$on('amvUpdated', function() {
+    var offAmvUpdated = $rootScope.$on('amvUpdated', function() {
       $scope.updateAnrRisksTable();
     });
 
-    $rootScope.$on('opRiskUpdated', function() {
+    var offOpRiskUpdated = $rootScope.$on('opRiskUpdated', function() {
       $scope.updateAnrRisksOpTable();
+    });
+
+    $scope.$on('$destroy', function() {
+      offRecommendationsSetsUpdated();
+      offReferentialsUpdated();
+      offAmvUpdated();
+      offOpRiskUpdated();
     });
 
     $scope.resetRisksFilters = function() {
